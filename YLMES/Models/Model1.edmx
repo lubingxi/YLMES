@@ -1252,6 +1252,11 @@
           <Parameter Name="InQTY" Type="varchar" Mode="In" />
           <Parameter Name="Location" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="AddProcessBOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PartNumber" Type="varchar" Mode="In" />
+          <Parameter Name="PartSpec" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="AddRoute" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Route" Type="int" Mode="In" />
           <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
@@ -1318,12 +1323,22 @@
         <Function Name="DeleteProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="DeleteProcessBOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="PartNumber" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="DeleteTaskProgress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TaskID" Type="int" Mode="In" />
           <Parameter Name="Item" Type="int" Mode="In" />
         </Function>
         <Function Name="EditAccessSetup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EditProcessBOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="PartNumber" Type="varchar" Mode="In" />
+          <Parameter Name="ChildPartQTY" Type="varchar" Mode="In" />
+          <Parameter Name="ChildPartNumber" Type="varchar" Mode="In" />
         </Function>
         <Function Name="force_updataBuye" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProjectID" Type="int" Mode="In" />
@@ -1548,6 +1563,11 @@
           <Parameter Name="MaterialID" Type="int" Mode="In" />
           <Parameter Name="unites" Type="varchar" Mode="In" />
           <Parameter Name="Status" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ProcessBOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PartNumber" Type="varchar" Mode="In" />
+          <Parameter Name="PartSpec" Type="varchar" Mode="In" />
+          <Parameter Name="PartMaterial" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ProductDetail_Order_check" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ContractID" Type="int" Mode="In" />
@@ -2072,6 +2092,10 @@
         <Function Name="TaskCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TaskID" Type="int" Mode="In" />
         </Function>
+        <Function Name="TaskForChangeQualifiedOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Owner" Type="varchar" Mode="In" />
+          <Parameter Name="TaskID" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="TaskMapingPartCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProjectName" Type="varchar" Mode="In" />
         </Function>
@@ -2162,6 +2186,14 @@
           <Parameter Name="MachineDesignScore" Type="varchar" Mode="In" />
           <Parameter Name="electricalDesignScore" Type="varchar" Mode="In" />
           <Parameter Name="SuggestedPoints" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateTaskForChangeIssueOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Owner" Type="varchar" Mode="In" />
+          <Parameter Name="TaskID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateTaskForChangeOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Owner" Type="varchar" Mode="In" />
+          <Parameter Name="TaskID" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UpdateTaskProgress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TaskID" Type="int" Mode="In" />
@@ -3909,6 +3941,11 @@
             <Parameter Name="InQTY" Mode="In" Type="String" />
             <Parameter Name="Location" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AddProcessBOM">
+            <Parameter Name="PartNumber" Mode="In" Type="String" />
+            <Parameter Name="PartSpec" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="AddRoute">
             <Parameter Name="Route" Mode="In" Type="Int32" />
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
@@ -3975,12 +4012,22 @@
           <FunctionImport Name="DeleteProcess">
             <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="DeleteProcessBOM" ReturnType="Collection(YLMES_newModel.DeleteProcessBOM_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="PartNumber" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="DeleteTaskProgress">
             <Parameter Name="TaskID" Mode="In" Type="Int32" />
             <Parameter Name="Item" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EditAccessSetup" ReturnType="Collection(YLMES_newModel.EditAccessSetup_Result)">
             <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EditProcessBOM">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="PartNumber" Mode="In" Type="String" />
+            <Parameter Name="ChildPartQTY" Mode="In" Type="String" />
+            <Parameter Name="ChildPartNumber" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="force_updataBuye">
             <Parameter Name="ProjectID" Mode="In" Type="Int32" />
@@ -4205,6 +4252,11 @@
             <Parameter Name="MaterialID" Mode="In" Type="Int32" />
             <Parameter Name="unites" Mode="In" Type="String" />
             <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ProcessBOM" ReturnType="Collection(YLMES_newModel.ProcessBOM_Result)">
+            <Parameter Name="PartNumber" Mode="In" Type="String" />
+            <Parameter Name="PartSpec" Mode="In" Type="String" />
+            <Parameter Name="PartMaterial" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ProductDetail_Order_check" ReturnType="Collection(YLMES_newModel.ProductDetail_Order_check_Result)">
             <Parameter Name="ContractID" Mode="In" Type="Int32" />
@@ -4729,6 +4781,10 @@
           <FunctionImport Name="TaskCheck" ReturnType="Collection(YLMES_newModel.TaskCheck_Result)">
             <Parameter Name="TaskID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="TaskForChangeQualifiedOwner">
+            <Parameter Name="Owner" Mode="In" Type="String" />
+            <Parameter Name="TaskID" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="TaskMapingPartCheck" ReturnType="Collection(YLMES_newModel.TaskMapingPartCheck_Result)">
             <Parameter Name="ProjectName" Mode="In" Type="String" />
           </FunctionImport>
@@ -4820,6 +4876,14 @@
             <Parameter Name="electricalDesignScore" Mode="In" Type="String" />
             <Parameter Name="SuggestedPoints" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UpdateTaskForChangeIssueOwner">
+            <Parameter Name="Owner" Mode="In" Type="String" />
+            <Parameter Name="TaskID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTaskForChangeOwner">
+            <Parameter Name="Owner" Mode="In" Type="String" />
+            <Parameter Name="TaskID" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="UpdateTaskProgress">
             <Parameter Name="TaskID" Mode="In" Type="Int32" />
             <Parameter Name="Item" Mode="In" Type="Int32" />
@@ -4888,6 +4952,17 @@
           <Property Type="String" Name="CompletionDescription" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="CreatedBY" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="CreatedTIme" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="DeleteProcessBOM_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="String" Name="工件编码" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="子件编码" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="子件数量" Nullable="true" />
+          <Property Type="Int32" Name="原材料用量" Nullable="true" />
+          <Property Type="String" Name="原材料单位" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="子BOM" Nullable="false" MaxLength="3" />
+          <Property Type="Int32" Name="是否组装件" Nullable="true" />
+          <Property Type="String" Name="工艺流程" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="EditAccessSetup_Result">
           <Property Type="String" Name="功能名称" Nullable="true" MaxLength="50" />
@@ -5081,6 +5156,21 @@
           <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="CreatedTime" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Status" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="ProcessBOM_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="String" Name="工件编码" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="工件规格" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="工件材料" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="子件编码" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="子件规格" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="子件材料" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="子件数量" Nullable="true" />
+          <Property Type="Int32" Name="原材料用量" Nullable="true" />
+          <Property Type="String" Name="原材料单位" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="子BOM" Nullable="false" MaxLength="3" />
+          <Property Type="Int32" Name="是否组装件" Nullable="true" />
+          <Property Type="String" Name="工艺流程" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="ProductDetail_Order_check_Result">
           <Property Type="String" Name="转生产订单" Nullable="false" MaxLength="10" />
@@ -5434,13 +5524,13 @@
           <Property Type="String" Name="PartMaterial" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="SP_PM_ProductLine_Result">
-          <Property Type="Int32" Name="序号" Nullable="false" />
-          <Property Type="String" Name="线名" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="创建人" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="创建时间" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="更新人" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="更新时间" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="状态" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="line" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="CreatedTime" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="UpdateTime" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="StatusID" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="SP_PM_ProductStation_Result">
           <Property Type="Int32" Name="序号" Nullable="false" />
@@ -6773,6 +6863,7 @@
           <FunctionImportMapping FunctionImportName="AddchildThing" FunctionName="YLMES_newModel.Store.AddchildThing" />
           <FunctionImportMapping FunctionImportName="AddMerial" FunctionName="YLMES_newModel.Store.AddMerial" />
           <FunctionImportMapping FunctionImportName="AddPM_MaterialList" FunctionName="YLMES_newModel.Store.AddPM_MaterialList" />
+          <FunctionImportMapping FunctionImportName="AddProcessBOM" FunctionName="YLMES_newModel.Store.AddProcessBOM" />
           <FunctionImportMapping FunctionImportName="AddRoute" FunctionName="YLMES_newModel.Store.AddRoute" />
           <FunctionImportMapping FunctionImportName="AddWork" FunctionName="YLMES_newModel.Store.AddWork" />
           <FunctionImportMapping FunctionImportName="checkBOM" FunctionName="YLMES_newModel.Store.checkBOM">
@@ -6871,6 +6962,21 @@
           <FunctionImportMapping FunctionImportName="DeleteAll" FunctionName="YLMES_newModel.Store.DeleteAll" />
           <FunctionImportMapping FunctionImportName="DeleteBOM" FunctionName="YLMES_newModel.Store.DeleteBOM" />
           <FunctionImportMapping FunctionImportName="DeleteProcess" FunctionName="YLMES_newModel.Store.DeleteProcess" />
+          <FunctionImportMapping FunctionImportName="DeleteProcessBOM" FunctionName="YLMES_newModel.Store.DeleteProcessBOM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.DeleteProcessBOM_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="工件编码" ColumnName="工件编码" />
+                <ScalarProperty Name="子件编码" ColumnName="子件编码" />
+                <ScalarProperty Name="子件数量" ColumnName="子件数量" />
+                <ScalarProperty Name="原材料用量" ColumnName="原材料用量" />
+                <ScalarProperty Name="原材料单位" ColumnName="原材料单位" />
+                <ScalarProperty Name="子BOM" ColumnName="子BOM" />
+                <ScalarProperty Name="是否组装件" ColumnName="是否组装件" />
+                <ScalarProperty Name="工艺流程" ColumnName="工艺流程" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="DeleteTaskProgress" FunctionName="YLMES_newModel.Store.DeleteTaskProgress" />
           <FunctionImportMapping FunctionImportName="EditAccessSetup" FunctionName="YLMES_newModel.Store.EditAccessSetup">
             <ResultMapping>
@@ -6880,6 +6986,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EditProcessBOM" FunctionName="YLMES_newModel.Store.EditProcessBOM" />
           <FunctionImportMapping FunctionImportName="force_updataBuye" FunctionName="YLMES_newModel.Store.force_updataBuye" />
           <FunctionImportMapping FunctionImportName="GeneratPO" FunctionName="YLMES_newModel.Store.GeneratPO" />
           <FunctionImportMapping FunctionImportName="getPatnumer" FunctionName="YLMES_newModel.Store.getPatnumer">
@@ -7141,6 +7248,25 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_updataBuye" FunctionName="YLMES_newModel.Store.proc_updataBuye" />
+          <FunctionImportMapping FunctionImportName="ProcessBOM" FunctionName="YLMES_newModel.Store.ProcessBOM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.ProcessBOM_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="工件编码" ColumnName="工件编码" />
+                <ScalarProperty Name="工件规格" ColumnName="工件规格" />
+                <ScalarProperty Name="工件材料" ColumnName="工件材料" />
+                <ScalarProperty Name="子件编码" ColumnName="子件编码" />
+                <ScalarProperty Name="子件规格" ColumnName="子件规格" />
+                <ScalarProperty Name="子件材料" ColumnName="子件材料" />
+                <ScalarProperty Name="子件数量" ColumnName="子件数量" />
+                <ScalarProperty Name="原材料用量" ColumnName="原材料用量" />
+                <ScalarProperty Name="原材料单位" ColumnName="原材料单位" />
+                <ScalarProperty Name="子BOM" ColumnName="子BOM" />
+                <ScalarProperty Name="是否组装件" ColumnName="是否组装件" />
+                <ScalarProperty Name="工艺流程" ColumnName="工艺流程" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ProductDetail_Order_check" FunctionName="YLMES_newModel.Store.ProductDetail_Order_check">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.ProductDetail_Order_check_Result">
@@ -7593,13 +7719,13 @@
           <FunctionImportMapping FunctionImportName="SP_PM_ProductLine" FunctionName="YLMES_newModel.Store.SP_PM_ProductLine">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.SP_PM_ProductLine_Result">
-                <ScalarProperty Name="序号" ColumnName="序号" />
-                <ScalarProperty Name="线名" ColumnName="线名" />
-                <ScalarProperty Name="创建人" ColumnName="创建人" />
-                <ScalarProperty Name="创建时间" ColumnName="创建时间" />
-                <ScalarProperty Name="更新人" ColumnName="更新人" />
-                <ScalarProperty Name="更新时间" ColumnName="更新时间" />
-                <ScalarProperty Name="状态" ColumnName="状态" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="line" ColumnName="line" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7733,6 +7859,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TaskForChangeQualifiedOwner" FunctionName="YLMES_newModel.Store.TaskForChangeQualifiedOwner" />
           <FunctionImportMapping FunctionImportName="TaskMapingPartCheck" FunctionName="YLMES_newModel.Store.TaskMapingPartCheck">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.TaskMapingPartCheck_Result">
@@ -7776,6 +7903,8 @@
           <FunctionImportMapping FunctionImportName="UpdateProcess" FunctionName="YLMES_newModel.Store.UpdateProcess" />
           <FunctionImportMapping FunctionImportName="UpdatePurchaseQTY" FunctionName="YLMES_newModel.Store.UpdatePurchaseQTY" />
           <FunctionImportMapping FunctionImportName="updateQualifiedCompleted" FunctionName="YLMES_newModel.Store.updateQualifiedCompleted" />
+          <FunctionImportMapping FunctionImportName="UpdateTaskForChangeIssueOwner" FunctionName="YLMES_newModel.Store.UpdateTaskForChangeIssueOwner" />
+          <FunctionImportMapping FunctionImportName="UpdateTaskForChangeOwner" FunctionName="YLMES_newModel.Store.UpdateTaskForChangeOwner" />
           <FunctionImportMapping FunctionImportName="UpdateTaskProgress" FunctionName="YLMES_newModel.Store.UpdateTaskProgress" />
           <FunctionImportMapping FunctionImportName="upStork" FunctionName="YLMES_newModel.Store.upStork" />
           <FunctionImportMapping FunctionImportName="www" FunctionName="YLMES_newModel.Store.www" />

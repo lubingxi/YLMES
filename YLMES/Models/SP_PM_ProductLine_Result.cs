@@ -13,12 +13,12 @@ namespace YLMES.Models
     
     public partial class SP_PM_ProductLine_Result
     {
-        public int 序号 { get; set; }
-        public string 线名 { get; set; }
-        public string 创建人 { get; set; }
-        public string 创建时间 { get; set; }
-        public string 更新人 { get; set; }
-        public string 更新时间 { get; set; }
-        public string 状态 { get; set; }
+        public int id { get; set; }
+        public string line { get; set; }
+        public string CreatedBy { get; set; }
+        public string CreatedTime { get; set; }
+        public string UpdatedBy { get; set; }
+        public string UpdateTime { get; set; }
+        public string StatusID { get; set; }
     }
 }

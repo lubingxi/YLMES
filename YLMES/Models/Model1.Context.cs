@@ -171,6 +171,23 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddPM_MaterialList", materialIDParameter, inQTYParameter, locationParameter);
         }
     
+        public virtual int AddProcessBOM(string partNumber, string partSpec, string createdBy)
+        {
+            var partNumberParameter = partNumber != null ?
+                new ObjectParameter("PartNumber", partNumber) :
+                new ObjectParameter("PartNumber", typeof(string));
+    
+            var partSpecParameter = partSpec != null ?
+                new ObjectParameter("PartSpec", partSpec) :
+                new ObjectParameter("PartSpec", typeof(string));
+    
+            var createdByParameter = createdBy != null ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddProcessBOM", partNumberParameter, partSpecParameter, createdByParameter);
+        }
+    
         public virtual int AddRoute(Nullable<int> route, string createdBy)
         {
             var routeParameter = route.HasValue ?
@@ -391,6 +408,19 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProcess", iDParameter);
         }
     
+        public virtual ObjectResult<DeleteProcessBOM_Result> DeleteProcessBOM(Nullable<int> iD, string partNumber)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var partNumberParameter = partNumber != null ?
+                new ObjectParameter("PartNumber", partNumber) :
+                new ObjectParameter("PartNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeleteProcessBOM_Result>("DeleteProcessBOM", iDParameter, partNumberParameter);
+        }
+    
         public virtual int DeleteTaskProgress(Nullable<int> taskID, Nullable<int> item)
         {
             var taskIDParameter = taskID.HasValue ?
@@ -411,6 +441,27 @@ namespace YLMES.Models
                 new ObjectParameter("UserName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EditAccessSetup_Result>("EditAccessSetup", userNameParameter);
+        }
+    
+        public virtual int EditProcessBOM(Nullable<int> iD, string partNumber, string childPartQTY, string childPartNumber)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var partNumberParameter = partNumber != null ?
+                new ObjectParameter("PartNumber", partNumber) :
+                new ObjectParameter("PartNumber", typeof(string));
+    
+            var childPartQTYParameter = childPartQTY != null ?
+                new ObjectParameter("ChildPartQTY", childPartQTY) :
+                new ObjectParameter("ChildPartQTY", typeof(string));
+    
+            var childPartNumberParameter = childPartNumber != null ?
+                new ObjectParameter("ChildPartNumber", childPartNumber) :
+                new ObjectParameter("ChildPartNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditProcessBOM", iDParameter, partNumberParameter, childPartQTYParameter, childPartNumberParameter);
         }
     
         public virtual int force_updataBuye(Nullable<int> projectID, Nullable<int> pOID, Nullable<int> materialID, Nullable<int> inPCS, Nullable<int> inQTY, string unites, Nullable<int> i)
@@ -1234,6 +1285,23 @@ namespace YLMES.Models
                 new ObjectParameter("Status", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_updataBuye", inpcsParameter, inqtyParameter, pONOParameter, iParameter, projectIDParameter, materialIDParameter, unitesParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<ProcessBOM_Result> ProcessBOM(string partNumber, string partSpec, string partMaterial)
+        {
+            var partNumberParameter = partNumber != null ?
+                new ObjectParameter("PartNumber", partNumber) :
+                new ObjectParameter("PartNumber", typeof(string));
+    
+            var partSpecParameter = partSpec != null ?
+                new ObjectParameter("PartSpec", partSpec) :
+                new ObjectParameter("PartSpec", typeof(string));
+    
+            var partMaterialParameter = partMaterial != null ?
+                new ObjectParameter("PartMaterial", partMaterial) :
+                new ObjectParameter("PartMaterial", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProcessBOM_Result>("ProcessBOM", partNumberParameter, partSpecParameter, partMaterialParameter);
         }
     
         public virtual ObjectResult<ProductDetail_Order_check_Result> ProductDetail_Order_check(Nullable<int> contractID, Nullable<int> productDetailID)
@@ -3195,6 +3263,19 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TaskCheck_Result>("TaskCheck", taskIDParameter);
         }
     
+        public virtual int TaskForChangeQualifiedOwner(string owner, string taskID)
+        {
+            var ownerParameter = owner != null ?
+                new ObjectParameter("Owner", owner) :
+                new ObjectParameter("Owner", typeof(string));
+    
+            var taskIDParameter = taskID != null ?
+                new ObjectParameter("TaskID", taskID) :
+                new ObjectParameter("TaskID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TaskForChangeQualifiedOwner", ownerParameter, taskIDParameter);
+        }
+    
         public virtual ObjectResult<TaskMapingPartCheck_Result> TaskMapingPartCheck(string projectName)
         {
             var projectNameParameter = projectName != null ?
@@ -3515,6 +3596,32 @@ namespace YLMES.Models
                 new ObjectParameter("SuggestedPoints", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateQualifiedCompleted", taskIDParameter, machineDesignScoreParameter, electricalDesignScoreParameter, suggestedPointsParameter);
+        }
+    
+        public virtual int UpdateTaskForChangeIssueOwner(string owner, string taskID)
+        {
+            var ownerParameter = owner != null ?
+                new ObjectParameter("Owner", owner) :
+                new ObjectParameter("Owner", typeof(string));
+    
+            var taskIDParameter = taskID != null ?
+                new ObjectParameter("TaskID", taskID) :
+                new ObjectParameter("TaskID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTaskForChangeIssueOwner", ownerParameter, taskIDParameter);
+        }
+    
+        public virtual int UpdateTaskForChangeOwner(string owner, string taskID)
+        {
+            var ownerParameter = owner != null ?
+                new ObjectParameter("Owner", owner) :
+                new ObjectParameter("Owner", typeof(string));
+    
+            var taskIDParameter = taskID != null ?
+                new ObjectParameter("TaskID", taskID) :
+                new ObjectParameter("TaskID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTaskForChangeOwner", ownerParameter, taskIDParameter);
         }
     
         public virtual int UpdateTaskProgress(Nullable<int> taskID, Nullable<int> item, string from, string to, string content, string completionDescription)

@@ -464,8 +464,8 @@ namespace YlMES.Controllers
             using (YLMES_newEntities ys = new YLMES_newEntities())
             {
                 SqlParameter[] parms = new SqlParameter[2];
-                //string name = Session["name"].ToString();
-                parms[0] = new SqlParameter("@Owner", "朱翠平");
+                string name = Session["name"].ToString();
+                parms[0] = new SqlParameter("@Owner", name);
                 parms[1] = new SqlParameter("@Status", Status);
                 var list = ys.Database.SqlQuery<MyTaskCheck_Result>("exec MyTaskCheck @Owner,@Status", parms).ToList();
                 Dictionary<string, Object> hasmap = new Dictionary<string, Object>();
@@ -1911,5 +1911,7 @@ namespace YlMES.Controllers
         }
 
         #endregion
+
+  
     }
 }
