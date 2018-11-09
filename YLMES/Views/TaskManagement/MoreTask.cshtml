@@ -1,0 +1,209 @@
+﻿@{
+    Layout = null;
+
+
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>友力信息管理系统</title>
+    <script src="../../My97DatePicker4.7.2/WdatePicker.js"></script>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../js/jquery.js"></script>
+    <script src="~/layui/layui.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $(".click").click(function () {
+                $(".tip").fadeIn(200);
+            });
+
+            $(".tiptop a").click(function () {
+                $(".tip").fadeOut(200);
+            });
+
+            $(".sure").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+            $(".cancel").click(function () {
+                $(".tip").fadeOut(100);
+            });
+            var $ = layui.$, active = {
+                getCheckData: function () { //获取选中数据
+                    var checkStatus = table.checkStatus('tw')
+                    , data = checkStatus.data;
+                    var task = new Array();
+                    for (var j = 0; j < data.length; j++) {
+                        task[j] = data[j].任务编号;
+                    }
+                    $.ajax({
+                        url: "/TaskManagement/UpdateTaskForChangeOwner?task=" + task,
+                        type: 'post',
+                        success: function (data) {
+                            if (data == "true") {
+                                layer.msg("OK！", { icon: 6 });
+                                table.reload('tw');
+                            }
+                            if (data == "false") {
+                                layer.msg('失败了！', { icon: 5 });
+                                return false;
+                            }
+                        }
+                    });
+                }          
+            };
+            var $ = layui.$, active = {
+                getCheckData2: function () { //获取选中数据
+                    var checkStatus = table.checkStatus('tw')
+                    , data = checkStatus.data;
+                    var task = new Array();
+                    for (var j = 0; j < data.length; j++) {
+                        task[j] = data[j].任务编号;
+                    }
+                    $.ajax({
+                        url: "/TaskManagement/updateTFCQO?task=" + task,
+                        type: 'post',
+                        success: function (data) {
+                            if (data == "true") {
+                                layer.msg("OK！", { icon: 6 });
+                                table.reload('tw');
+                            }
+                            if (data == "false") {
+                                layer.msg('失败了！', { icon: 5 });
+                                return false;
+                            }
+                        }
+                    });
+                }
+            };
+            var $ = layui.$, active = {
+                getCheckData3: function () { //获取选中数据
+                    var checkStatus = table.checkStatus('tw')
+                    , data = checkStatus.data;
+                    var task = new Array();
+                    for (var j = 0; j < data.length; j++) {
+                        task[j] = data[j].任务编号;
+                    }
+                    $.ajax({
+                        url: "/TaskManagement/UpdateTFCIO?task=" + task,
+                        type: 'post',
+                        success: function (data) {
+                            if (data == "true") {
+                                layer.msg("OK！", { icon: 6 });
+                                table.reload('tw');
+                            }
+                            if (data == "false") {
+                                layer.msg('失败了！', { icon: 5 });
+                                return false;
+                            }
+                        }
+                    });
+                }
+            };
+            //查看事件
+            //$(".deleteone").click(function () {
+            //    var type = $(this).data('type');
+            //    active[type] ? active[type].call(this) : '';
+            //    alert("1");
+            //});
+            //var $ = layui.$, active = {
+            //    getCheckLength: function () {
+            //        var checkStatus = table.checkStatus('tw').data = checkStatus.data;
+            //        var IdList = new Array();
+            //        for (var j = 0; j < data.length; j++) {
+            //            IdList[j] = data[j].id;
+            //        }
+            //        var url = "/Home/DeleteList?id=" + IdList;
+            //        layer.confirm('选中了' + data.length + '条数据,真的要删除吗?', function (index) {
+            //            layer.close(index);
+            //            $.ajax({
+            //                type: "post",
+            //                url: url,
+            //                data: { "id": IdList },
+            //                async: true,
+            //                success: function (data) {
+            //                    if (data == "true") {
+            //                        layer.msg('删除成功', { icon: 1 });
+            //                        table.reload('tw');
+            //                    }
+            //                    else {
+            //                        layer.msg('删除失败', { icon: 2 });
+            //                        table.reload('tw');
+            //                    }
+            //                }
+            //            })
+            //        })
+            //    }
+            //}
+            layui.use(['table', 'layer'], function () {
+                var table = layui.table, layer = layui.layer;                  
+                    table.render({
+                        elem: '#tw'
+                   , url: '/TaskManagement/IwantMoreTask'
+                   , page: true
+                   , limit: 15
+                   , cols: [[
+                    { type: 'checkbox', fixed: 'left' }
+                   , { field: '任务编号', width: 210, title: '任务编号' }
+                   , { field: '任务名称', width: 210, title: '任务名称' }
+                   , { field: '项目名称', width: 235, title: '项目名称' }
+                   , { field: '产品名称', width: 235, title: '产品名称' }
+                   , { field: '产品规格', width: 235, title: '产品规格' }
+                   , { field: '机械设计人', width: 235, title: '机械设计人' }
+                   , { field: '电气设计人', width: 235, title: '电气设计人' }
+                   , { field: '审核人', width: 235, title: '审核人' }
+                   , { field: '发行人', width: 235, title: '发行人' }
+                   , { field: '任务状态', width: 235, title: '任务状态' }
+                   ]]
+
+                    });               
+                table.on('checkbox(demo)', function (obj) {
+                    console.log(obj)
+                });          
+
+
+            });
+        })
+
+
+
+    </script>
+   
+
+
+</head>
+
+
+<body>
+
+    <div class="rightinfo">
+
+        <div class="tools">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData" style="height:35px" id="btns">这个设计我要了哦</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData2" style="height:35px" id="btns">这个审核任务我要了哦</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData3" style="height:35px" id="btns">这个图形发行任务我要了哦</button>
+
+        </div>
+        <table class="tablelist" id="tw" lay-filter="demo"></table>
+
+
+
+
+    </div>
+    <script type="text/javascript" src="~/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="~/static/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="~/static/h-ui.admin/js/H-ui.admin.js"></script>
+    <script type="text/javascript" src="~/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+</body>
+</html>

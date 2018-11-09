@@ -1,5 +1,5 @@
 ﻿<!--_meta 作为公共模版分离出去-->
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -56,8 +56,18 @@
                             任务状态：
                         </label>
                         <div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" id="website-title"  value="@ViewData["Status"]" class="input-text" readonly="readonly">
-                          
+                            <input type="text" id="website-title" value="@ViewData["Status"]" class="input-text" readonly="readonly">
+
+                        </div>
+                    </div>
+                    <div class="row cl">
+                        <label class="form-label col-xs-4 col-sm-2">
+                            <span class="c-red">*</span>
+                            下一步：
+                        </label>
+                        <div class="formControls col-xs-8 col-sm-9">
+                            <input type="text" id="website-title" value="@ViewData["ifDrive"]" class="input-text" readonly="readonly">
+
                         </div>
                     </div>
                     <div class="row cl">
@@ -66,7 +76,7 @@
                             客户名称：
                         </label>
                         <div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" id="website-Keywords"  value="@ViewData["CustomerName"]" class="input-text" readonly="readonly">
+                            <input type="text" id="website-Keywords" value="@ViewData["CustomerName"]" class="input-text" readonly="readonly">
                         </div>
                     </div>
                     <div class="row cl">
@@ -75,7 +85,7 @@
                             合同编号：
                         </label>
                         <div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" id="website-description"  value="@ViewData["ContractNumber"]" class="input-text" readonly="readonly">
+                            <input type="text" id="website-description" value="@ViewData["ContractNumber"]" class="input-text" readonly="readonly">
                         </div>
                     </div>
                     <div class="row cl">
@@ -85,7 +95,7 @@
 
                         </label>
                         <div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" id="pcName"  value="@ViewData["ProductName"]" class="input-text" readonly="readonly">
+                            <input type="text" id="pcName" value="@ViewData["ProductName"]" class="input-text" readonly="readonly">
                         </div>
                     </div>
                     <div class="row cl">
@@ -94,7 +104,7 @@
                             任务名称：
                         </label>
                         <div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" id="website-uploadfile"  value="@ViewData["TaskName"]" class="input-text" readonly="readonly">
+                            <input type="text" id="website-uploadfile" value="@ViewData["TaskName"]" class="input-text" readonly="readonly">
                         </div>
                     </div>
                     <div class="row cl">
@@ -103,7 +113,7 @@
                             产品规格：
                         </label>
                         <div class="formControls col-xs-8 col-sm-9">
-                            <input type="text" id="spec"  value="@ViewData["ProductSpec"]" class="input-text" readonly="readonly">
+                            <input type="text" id="spec" value="@ViewData["ProductSpec"]" class="input-text" readonly="readonly">
                         </div>
                     </div>
                     <div class="row cl">
@@ -174,7 +184,7 @@
                     <div class="row cl">
                         <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>设计人：</label>
                         <div class="formControls col-xs-8 col-sm-9">
-                            <input type="text"  id="Owner" name="Owner" readonly="readonly" class="input-text" value="@ViewData["Owner"]">
+                            <input type="text" id="Owner" name="Owner" readonly="readonly" class="input-text" value="@ViewData["Owner"]">
                         </div>
                     </div>
                     <div class="row cl">
@@ -284,7 +294,7 @@
                         <div class="formControls col-xs-8 col-sm-9">
                             <input type="text" id="CarryingCapacity" name="CarryingCapacity" class="input-text" value="@ViewData["CarryingCapacity"]">
                         </div>
-                    </div>                   
+                    </div>
                 </div>
                 <div class="tabCon">
                     <div class="row cl">
@@ -292,7 +302,7 @@
                         <div class="formControls col-xs-8 col-sm-9">
                             <input type="text" id="PEOwner" name="PEOwner" class="input-text" value="@ViewData["PEOwner"]">
                         </div>
-                    </div> 
+                    </div>
                     <div class="row cl">
                         <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>基准时间：</label>
                         <div class="formControls col-xs-8 col-sm-9">
@@ -442,12 +452,10 @@
                         </div>
                     </div>
                 </div>
-            </div>   
-            <div class="row cl">
-                
-            </div>      
+            </div>
+            
         </form>
-        <button class="layui-btn layui-btn-normal" id="OK">@ViewData["ifDrive"]</button><button class="layui-btn" id="up">更新进度</button>
+       
     </div>
 
     <!--_footer 作为公共模版分离出去-->
@@ -460,10 +468,7 @@
     <script type="text/javascript" src="~/lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="~/lib/jquery.validation/1.14.0/messages_zh.js"></script>
     <style>
-        #OK{
-            margin-left:500px;
-        }
-      
+       
     </style>
     <script type="text/javascript">
 
@@ -472,259 +477,12 @@
             checkboxClass: 'icheckbox-blue',
             radioClass: 'iradio-blue',
             increaseArea: '20%'
-        });
-        $("#OK").click(function () {
-
-            var taskid = '@ViewData["TaskID"]';
-
-            @*if ('@ViewData["ifDrive"]' == "设计部确认机械设计分配") {
-                $.ajax({
-                    url: "/TaskManagement/UpdateMachineDesignConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = '/TaskManagement/NameTask?id=' + '@Session["id"]';
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部确认电气设计分配") {
-                $.ajax({
-                    url: "/TaskManagement/UpdateElectricalDesignConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = '/TaskManagement/NameTask?id=' + '@Session["id"]';
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部确认机械审核分配" || '@ViewData["ifDrive"]' == "设计部确认电气审核分配") {
-                $.ajax({
-                    url: "/TaskManagement/UpdateQualifiedConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = '/TaskManagement/NameTask?id=' + '@Session["id"]';
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部确认图纸发行分配") {
-                $.ajax({
-                    url: "/TaskManagement/UpdateIssueConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = '/TaskManagement/NameTask?id=' + '@Session["id"]';
-            }, 500);
-            }
-            else {
-                            alert("确认失败!");
-                            return;
-            }
-            }
-            });
-	    }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部完成图纸发行") {
-                if ('@ViewData["SendXing"]' == "标准") {
-                    var url = '/TaskManagement/FinishMyDesign?ifDrive=' + '@ViewData["ifDrives"]' + '&name=' + '@ViewData["names"]' + '&ProjectName=' + '@ViewData["CustomerNames"]';
-                    layer_show("完成我的设计", url, 1400, 800);
-                }
-                else
-                {
-                    $.ajax({
-                        url: "/TaskManagement/UpdateIssueCompleted",
-                        data: { Taskid: taskid },
-                        type: "post",
-                        dataType: "text",
-                        success: function (data) {
-                            if (data == "true") {
-                                window.setTimeout(function () {
-                                    window.parent.document.getElementById("rightframe").src = '/TaskManagement/NameTask?id=' + '@Session["id"]';
-                                }, 500);
-                            }
-                            else {
-                                alert("确认失败!");
-                                return;
-                            }
-                        }
-                    });
-                }
-
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "工艺部确认图纸接收") {
-                $.ajax({
-                    url: "/TaskManagement/UpdateAcceptDesignFile",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = '/TaskManagement/NameTask?id=' + '@Session["id"]';
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "工艺部完成工艺流程") {
-            window.parent.document.getElementById("rightframe").src = '/TaskManagement/TaskMapPart?TaskID=' + '@ViewData["ProcessFlow"]' + '&ProductName=' + '@ViewData["ProductNamed"]' + '&ProductSpec=' + '@ViewData["ProductSpecd"]';
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部完成机械设计" || '@ViewData["ifDrive"]' == "设计部完成电气设计") {
-                var url = '/TaskManagement/FinishMyDesign?ifDrive=' + '@ViewData["ifDrives"]' + '&name=' + '@ViewData["names"]' + '&ProjectName=' + '@ViewData["CustomerNames"]';
-                layer_show("完成我的设计", url, 1400, 800);
-            }
-            if ('@ViewData["ifDrive"]' == "设计部完成机械审核" || '@ViewData["ifDrive"]' == "设计部完成电气审核") {
-                layer_show("完成我的审核", '/TaskManagement/TaskScoring?ifDrive=' + '@ViewData["ifDrive"]', 1200, 700);
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "计划部确认计划分配") {
-                $.ajax({
-                    url: "/TaskManagement/UpdatePMCAssignConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "计划部完成计划") {
-                var pcName = $("#pcName").val();
-                var spec = $("#spec").val();
-                var TaskType = $("#TaskType").val();
-                window.parent.document.getElementById("rightframe").src = "/TaskManagement/PMCSettingWO?id=" + taskid + "&ProjectName=" + "@ViewData["CustomerNames"]" + "&pcName=" + pcName + "&spec=" + spec + "&TaskType=" + TaskType + "&Choose=" + Choose;
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "完成排产计划") {
-                $.ajax({
-                    url: "/TaskManagement/Scheduling",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "采购部确认采购分配") {
-                $.ajax({
-                    url: "/TaskManagement/CPurchase",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "采购部完成采购") {
-                window.parent.document.getElementById("rightframe").src = "/TaskManagement/CompletePurchase?type=" + "@Session["type2"]"+"&id"+"@Session["id"]"+"&pjname="+"@ViewData["CustomerNamesv"]";
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "生产部确认生产任务分配") {
-                $.ajax({
-                    url: "/TaskManagement/ProductStartConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "确认开始投料生产") {
-                $.ajax({
-                    url: "/TaskManagement/ProductStartConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            if ('@ViewData["ifDrive"]' == "生产部完成生产任务") {
-                window.parent.document.getElementById("rightframe").src = "/TaskManagement/ProductMS";
-            }
-        });
-        $("#up").click(function () {
-            layer_show("任务进度详细", '/TaskManagement/UpdateProgress', 1200, 700);
-        });
+        });      
         $("#tab-system").Huitab({
             index: 0
         });
     });
-</script>
+    </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

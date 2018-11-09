@@ -16,6 +16,7 @@ namespace YLMES.Models
         public int ID { get; set; }
         public string PONO { get; set; }
         public Nullable<int> ApplierID { get; set; }
+        public Nullable<double> Money { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedTime { get; set; }
         public string Status { get; set; }

@@ -282,6 +282,9 @@
     <Compile Include="Models\C_Contract_ReceivablesHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EditAccessSetup_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee__dele.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -289,6 +292,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getWH_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IwantMoreTask_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MaterialCategory.cs">
@@ -313,6 +319,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MyTaskCheck_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Permission_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PM_ApplierList.cs">
@@ -492,6 +501,9 @@
     <Compile Include="Models\PM_WorkStationDetailHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\POcheck_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\proc_getbuyes_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -508,6 +520,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductDetail_Order_Edit_Check_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PurchaseQTYcheck_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ReceivablesHistorycheck_Result.cs">
@@ -666,6 +681,11 @@
     <Content Include="Views\TaskManagement\EditingProcess.cshtml" />
     <Content Include="Views\TaskManagement\PMCSettingWO.cshtml" />
     <Content Include="Views\SystemSettings\Permissions.cshtml" />
+    <Content Include="Views\TaskManagement\Purchasing.cshtml" />
+    <Content Include="Views\TaskManagement\CompletePurchase.cshtml" />
+    <Content Include="Views\TaskManagement\ProductMS.cshtml" />
+    <Content Include="Views\TaskManagement\MoreTask.cshtml" />
+    <Content Include="Views\TaskManagement\NameTask2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

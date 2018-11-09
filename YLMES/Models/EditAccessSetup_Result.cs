@@ -10,16 +10,10 @@
 namespace YLMES.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class PM_PONO
+    public partial class EditAccessSetup_Result
     {
-        public int ID { get; set; }
-        public string PONO { get; set; }
-        public Nullable<int> ApplierID { get; set; }
-        public Nullable<double> Money { get; set; }
-        public string CreatedBy { get; set; }
-        public string CreatedTime { get; set; }
-        public string Status { get; set; }
+        public string 功能名称 { get; set; }
+        public string 姓名 { get; set; }
     }
 }

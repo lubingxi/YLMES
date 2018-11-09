@@ -270,8 +270,10 @@ namespace YlMES.Controllers
                 ViewData["Status"] = list.任务状态;
                 ViewData["TaskID"] = list.任务编号;
                 ViewData["TaskID2"] = list.任务编号;
+                Session["TaskID3"] = list.任务编号;
                 ViewData["CustomerName"] = list.客户名称;
                 ViewData["CustomerNames"] = list.客户名称;
+                ViewData["CustomerNamesv"] = list.客户名称;
                 ViewData["ContractNumber"] = list.项目名称;
                 ViewData["ProductName"] = list.产品名称;
                 ViewData["ProductNamed"] = list.产品名称;
@@ -292,6 +294,7 @@ namespace YlMES.Controllers
                 ViewData["file3"] = list.任务附件3;
                 ViewData["JieDate"] = list.截止日期;
                 Session["type"] = list.设计类型;
+                Session["type2"] = list.设计类型;
                 if (list.设计类型 == "电气设计")
                 {
                     ViewData["Owner"] = list.电气设计人;
@@ -350,7 +353,108 @@ namespace YlMES.Controllers
             }
             return View();
         }
-
+        public ActionResult NameTask2(string id)
+        {
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+                Session["id"] = id;
+                Session["taid"] = id;
+                Session["Delete"] = id;
+                Session["Check"] = id;
+                Session["Finish"] = id;
+                Session["Projess"] = id;
+                Session["UTP"] = id;
+                ViewData["ProcessFlow"] = id;
+                int i = int.Parse(id);
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@TaskID", i);
+                var list = ys.Database.SqlQuery<TaskCheck_Result>("exec TaskCheck @TaskID", parms).FirstOrDefault();
+                ViewData["Status"] = list.任务状态;
+                ViewData["TaskID"] = list.任务编号;
+                ViewData["TaskID2"] = list.任务编号;
+                Session["TaskID3"] = list.任务编号;
+                ViewData["CustomerName"] = list.客户名称;
+                ViewData["CustomerNames"] = list.客户名称;
+                ViewData["CustomerNamesv"] = list.客户名称;
+                ViewData["ContractNumber"] = list.项目名称;
+                ViewData["ProductName"] = list.产品名称;
+                ViewData["ProductNamed"] = list.产品名称;
+                ViewData["TaskName"] = list.任务名称;
+                ViewData["ProductSpec"] = list.产品规格;
+                ViewData["ProductSpecd"] = list.产品规格;
+                var Status = ys.PM_TaskRoute.Where(p => p.TaskCurrentStatus.Equals(list.任务状态)).FirstOrDefault();
+                ViewData["ifDrive"] = Status.TaskCurrentContent;
+                ViewData["ifDrives"] = Status.TaskCurrentContent;
+                ViewData["name"] = list.任务类型;
+                ViewData["names"] = list.任务类型;
+                ViewData["SendXing"] = list.任务类型;
+                Session["leixing"] = list.任务类型;
+                ViewData["PriorityCode"] = list.紧急程度;
+                ViewData["taskdesc"] = list.任务描述;
+                ViewData["file1"] = list.任务附件1;
+                ViewData["file2"] = list.任务附件2;
+                ViewData["file3"] = list.任务附件3;
+                ViewData["JieDate"] = list.截止日期;
+                Session["type"] = list.设计类型;
+                Session["type2"] = list.设计类型;
+                if (list.设计类型 == "电气设计")
+                {
+                    ViewData["Owner"] = list.电气设计人;
+                    ViewData["BaseScore"] = list.电气设计分值;
+                    ViewData["BaseTime"] = list.电气设计基准时间;
+                    ViewData["ConfirmTime"] = list.电气设计确认时间;
+                    ViewData["CompletedTime"] = list.电气设计完成时间;
+                    ViewData["OverDue"] = list.电气设计是否逾期;
+                }
+                else
+                {
+                    ViewData["Owner"] = list.机械设计人;
+                    ViewData["BaseScore"] = list.机械设计分值;
+                    ViewData["BaseTime"] = list.机械设计基准时间;
+                    ViewData["ConfirmTime"] = list.机械设计确认时间;
+                    ViewData["CompletedTime"] = list.机械设计完成时间;
+                    ViewData["OverDue"] = list.机械设计是否逾期;
+                }
+                ViewData["QualifiedOwner"] = list.审核人;
+                ViewData["QualifiedBaseScore"] = list.审核分值;
+                ViewData["QualifiedBaseTime"] = list.审核基准时间;
+                ViewData["QualifiedConfirmTime"] = list.审核确认时间;
+                ViewData["QualifiedCompletedTime"] = list.审核完成时间;
+                ViewData["QualifiedOverDue"] = list.审核是否逾期;
+                ViewData["IssueOwner"] = list.发行人;
+                ViewData["IssueBaseScore"] = list.发行分值;
+                ViewData["IssueBaseTime"] = list.发行基准时间;
+                ViewData["IssueConfirmTime"] = list.发行确认时间;
+                ViewData["IssueCompletedTime"] = list.发行完成时间;
+                ViewData["IssueOverDue"] = list.发行是否逾期;
+                ViewData["CarryingCapacity"] = list.载重;
+                ViewData["PEOwner"] = list.工艺负责人;
+                ViewData["PEBaseTime"] = list.工艺基准时间;
+                ViewData["PEConfirmTime"] = list.工艺确认时间;
+                ViewData["PECompletedTime"] = list.工艺完成时间;
+                ViewData["PurchaseOwner"] = list.采购负责人;
+                ViewData["PurchaseBaseTime"] = list.采购基准时间;
+                ViewData["PurchaseConfirmTime"] = list.采购确认时间;
+                ViewData["PurchaseCompletedTime"] = list.采购完成时间;
+                ViewData["PMCOwner"] = list.计划负责人;
+                ViewData["PMCBaseTime"] = list.计划基准时间;
+                ViewData["PMCConfirmTime"] = list.计划确认时间;
+                ViewData["PMCCompletedTime"] = list.计划完成时间;
+                ViewData["ProductOwner"] = list.采购负责人;
+                ViewData["ProductBaseTime"] = list.采购基准时间;
+                ViewData["ProductConfirmTime"] = list.采购确认时间;
+                ViewData["ProductCompletedTime"] = list.采购完成时间;
+                ViewData["WHOwner"] = list.仓库负责人;
+                ViewData["WHDeliveryBasetime"] = list.仓库基准时间;
+                ViewData["WHConfirmTime"] = list.仓库确认时间;
+                ViewData["WHCompletedTime"] = list.仓库完成时间;
+                ViewData["InstallOwner"] = list.售后负责人;
+                ViewData["InstallBasetime"] = list.售后基准时间;
+                ViewData["InstallConfirmTime"] = list.售后确认时间;
+                ViewData["InstallCompletedTime"] = list.售后完成时间;
+            }
+            return View();
+        }
         #endregion
 
         #region 显示我的任务信息
@@ -372,6 +476,124 @@ namespace YlMES.Controllers
                 hasmap.Add("count", count);
                 hasmap.Add("data", pageList);
                 return Json(hasmap, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        #endregion
+
+        #region 我要更多任务
+        //更多任务页面
+        public ActionResult MoreTask()
+        {
+            return View();
+        }
+        //显示更多任务
+        public ActionResult IwantMoreTask(int page,int limit)
+        {
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+                var list = ys.Database.SqlQuery<IwantMoreTask_Result>("exec IwantMoreTask").ToList();
+                Dictionary<string, Object> hasmap = new Dictionary<string, Object>();
+                PageList<IwantMoreTask_Result> pageList = new PageList<IwantMoreTask_Result>(list, page, limit);
+                int count = list.Count();
+                hasmap.Add("code", 0);
+                hasmap.Add("msg", "");
+                hasmap.Add("count", count);
+                hasmap.Add("data", pageList);
+                return Json(hasmap, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //插入设计任务
+        public ActionResult UpdateTaskForChangeOwner(string task)
+        {
+            try
+            {
+                string name = Session["name"].ToString();
+                string[] id = task.Split(',');
+                List<string> listd = new List<string>();
+                foreach (var list in id)
+                {
+                    listd.Add(list);
+                }
+                for (int w = 0; w < listd.Count; w++)
+                {
+                    string bianhao = listd[w].ToString();
+                    using (YLMES_newEntities ys = new YLMES_newEntities())
+                    {
+                        SqlParameter[] parms = new SqlParameter[2];
+                        parms[0] = new SqlParameter("@Owner", name);
+                        parms[1] = new SqlParameter("@TaskID", bianhao);
+                        ys.Database.ExecuteSqlCommand("exec UpdateTaskForChangeOwner  @Owner,@TaskID", parms);
+                    }
+                }                            
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //插入审核任务
+        public ActionResult updateTFCQO(string task)
+        {
+            try
+            {
+                string name = Session["name"].ToString();
+                string[] id = task.Split(',');
+                List<string> listd = new List<string>();
+                foreach (var list in id)
+                {
+                    listd.Add(list);
+                }
+                for (int w = 0; w < listd.Count; w++)
+                {
+                    string bianhao = listd[w].ToString();
+                    using (YLMES_newEntities ys = new YLMES_newEntities())
+                    {
+                        SqlParameter[] parms = new SqlParameter[2];
+                        parms[0] = new SqlParameter("@Owner", name);
+                        parms[1] = new SqlParameter("@TaskID", bianhao);
+                        ys.Database.ExecuteSqlCommand("exec TaskForChangeQualifiedOwner  @Owner,@TaskID", parms);
+                    }
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //插入图纸发行任务
+        public ActionResult UpdateTFCIO(string task)
+        {
+            try
+            {
+                string name = Session["name"].ToString();
+                string[] id = task.Split(',');
+                List<string> listd = new List<string>();
+                foreach (var list in id)
+                {
+                    listd.Add(list);
+                }
+                for (int w = 0; w < listd.Count; w++)
+                {
+                    string bianhao = listd[w].ToString();
+                    using (YLMES_newEntities ys = new YLMES_newEntities())
+                    {
+                        SqlParameter[] parms = new SqlParameter[2];
+                        parms[0] = new SqlParameter("@Owner", name);
+                        parms[1] = new SqlParameter("@TaskID", bianhao);
+                        ys.Database.ExecuteSqlCommand("exec UpdateTaskForChangeIssueOwner  @Owner,@TaskID", parms);
+                    }
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
             }
         }
 
@@ -1443,9 +1665,250 @@ namespace YlMES.Controllers
         //采购申请单
         public ActionResult Purchasing(string ifDriver, string Taskid)
         {
+            Session["taskid"] = Taskid;
+            return View();
+        }
+        //显示申购
+        public ActionResult CheckPurchase(string change, string Taskid,int page,int limit)
+        {
+         
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+                int tid = int.Parse(Taskid);
+                if (change == "全部")
+                {
+                    change = "";
+                }
+                SqlParameter[] parms = new SqlParameter[2];
+                parms[0] = new SqlParameter("@TaskID", tid);
+                parms[1] = new SqlParameter("@ListType", change);
+                var list = ys.Database.SqlQuery<PurchaseQTYcheck_Result>("exec PurchaseQTYcheck @TaskID,@ListType", parms).ToList();
+                Dictionary<string, Object> hasmap = new Dictionary<string, Object>();
+                PageList<PurchaseQTYcheck_Result> pageList = new PageList<PurchaseQTYcheck_Result>(list, page, limit);
+                int count = list.Count();
+                hasmap.Add("code", 0);
+                hasmap.Add("msg", "");
+                hasmap.Add("count", count);
+                hasmap.Add("data", pageList);
+                return Json(hasmap, JsonRequestBehavior.AllowGet);
+            }
 
         }
+        //修改申购
+        public ActionResult EditPurchase(string afps, string QRequested, string unit, string desic,string tid)
+        {
+            try
+            {
+                SqlParameter[] parms = new SqlParameter[5];
+                int fps = int.Parse(afps);
+                int count = int.Parse(QRequested);
+                int id = int.Parse(tid);
+                parms[0] = new SqlParameter("@ActPurchasePCS",fps);
+                parms[1] = new SqlParameter("@Purchasepcs", count);
+                parms[2] = new SqlParameter("@TaskID", id);
+                parms[3] = new SqlParameter("@Units", unit);
+                parms[4] = new SqlParameter("@Note", desic);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec UpdatePurchaseQTY  @ActPurchasePCS,@Purchasepcs,@TaskID,@Units,@Note", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //确认提交采购申请
+        public ActionResult EQProcurement(string taskid)
+        {
+            try
+            {
+                int tid = int.Parse(taskid);
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@TaskID", tid);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec PMCAskPurchase  @TaskID", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //排产计划
+        public ActionResult Scheduling(string Taskid)
+        {
+            try
+            {
+                int tid = int.Parse(Taskid);
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@TaskID", tid);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec Scheduling  @TaskID", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        #endregion
 
+        #region 采购部
+        //确认采购分配
+        public ActionResult CPurchase(string Taskid)
+        {
+            try
+            {
+                int tid = int.Parse(Taskid);
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@TaskID", tid);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec PurchaseApplyConfirm @TaskID", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //采购部确认视图
+        public ActionResult CompletePurchase(string type, string id, string pjname)
+        {
+            ViewData["types"] = type;
+            ViewData["tid"] = id;
+            ViewData["pjname"] = pjname;
+            int tid = int.Parse(id);
+            SqlParameter[] parms = new SqlParameter[1];
+            parms[0] = new SqlParameter("@TaskID", tid);
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+                var list = (from p in ys.PM_PurchaseMaterialList
+                            join s in ys.PM_PONO
+                           on p.POID equals s.ID
+                           where p.TaskID == tid
+                            select new
+                            {
+                                s.ID,
+                                s.PONO
+                            }).Distinct().ToList();
+                           
+                           
+                //var list = ys.Database.SqlQuery<McomingPO_Result>("exec ImcomingPOcheck @TaskID", parms).ToList();
+                ViewBag.pn = list;
+            }
+            return View();
+        }
+        //显示采购合同
+        public ActionResult CheckpurChaseOrder(string PONOID,int page,int limit)
+        {
+            int pid = int.Parse(PONOID);
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {             
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@PONOID", pid);
+                var list = ys.Database.SqlQuery<POcheck_Result>("exec POcheck @PONOID", parms).ToList();
+                Dictionary<string, Object> hasmap = new Dictionary<string, Object>();
+                PageList<POcheck_Result> pageList = new PageList<POcheck_Result>(list, page, limit);
+                int count = list.Count();
+                hasmap.Add("code", 0);
+                hasmap.Add("msg", "");
+                hasmap.Add("count", count);
+                hasmap.Add("data", pageList);
+                return Json(hasmap, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //循环生成合同号
+        public ActionResult ContractNo(string hao)
+        {
+            try
+            {
+                string[] haoma = hao.Split(',');
+                List<string> listd = new List<string>();              
+                    foreach (var list in haoma)
+                    {
+                        listd.Add(list);
+                    }
+                    for (int w = 0; w < listd.Count; w++)
+                    {
+                        string xh = listd[w].ToString();
+                        using (YLMES_newEntities ys = new YLMES_newEntities())
+                        {
+                            SqlParameter[] parms = new SqlParameter[3];
+                            parms[0] = new SqlParameter("@TaskID", 999);
+                            parms[1] = new SqlParameter("@ListType", "");
+                            parms[2] = new SqlParameter("@IDs", xh);
+                            ys.Database.ExecuteSqlCommand("exec GeneratPO  @TaskID,@ListType,@IDs", parms);
+                        }
+                    }
+                
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //发送到货通知
+        public ActionResult SendNotice(string hao)
+        {
+            try
+            {
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@PONO", hao);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec ImcommingPONotice  @PONO", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+
+        #endregion
+
+        #region 生产部
+        //确认生产和开始生产
+        public ActionResult ProductStartConfirm(string Taskid)
+        {
+            try
+            {
+                int tid = int.Parse(Taskid);
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@TaskID", tid);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec ProductStartConfirm @TaskID", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //完成生产任务
+        public ActionResult ProductMS()
+        {
+            return View();
+        }
 
         #endregion
     }
