@@ -477,7 +477,7 @@
 
             var taskid = '@ViewData["TaskID"]';
 
-            @*if ('@ViewData["ifDrive"]' == "设计部确认机械设计分配") {
+            if ('@ViewData["ifDrive"]' == "设计部确认机械设计分配") {
                 $.ajax({
                     url: "/TaskManagement/UpdateMachineDesignConfirm",
                     data: { Taskid: taskid },
@@ -495,8 +495,8 @@
                         }
                     }
                 });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部确认电气设计分配") {
+            }
+            if ('@ViewData["ifDrive"]' == "设计部确认电气设计分配") {
                 $.ajax({
                     url: "/TaskManagement/UpdateElectricalDesignConfirm",
                     data: { Taskid: taskid },
@@ -514,8 +514,8 @@
                         }
                     }
                 });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部确认机械审核分配" || '@ViewData["ifDrive"]' == "设计部确认电气审核分配") {
+            }
+            if ('@ViewData["ifDrive"]' == "设计部确认机械审核分配" || '@ViewData["ifDrive"]' == "设计部确认电气审核分配") {
                 $.ajax({
                     url: "/TaskManagement/UpdateQualifiedConfirm",
                     data: { Taskid: taskid },
@@ -533,8 +533,8 @@
                         }
                     }
                 });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部确认图纸发行分配") {
+            }
+            if ('@ViewData["ifDrive"]' == "设计部确认图纸发行分配") {
                 $.ajax({
                     url: "/TaskManagement/UpdateIssueConfirm",
                     data: { Taskid: taskid },
@@ -552,8 +552,8 @@
             }
             }
             });
-	    }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部完成图纸发行") {
+	    }
+            if ('@ViewData["ifDrive"]' == "设计部完成图纸发行") {
                 if ('@ViewData["SendXing"]' == "标准") {
                     var url = '/TaskManagement/FinishMyDesign?ifDrive=' + '@ViewData["ifDrives"]' + '&name=' + '@ViewData["names"]' + '&ProjectName=' + '@ViewData["CustomerNames"]';
                     layer_show("完成我的设计", url, 1400, 800);
@@ -579,8 +579,8 @@
                     });
                 }
 
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "工艺部确认图纸接收") {
+            }
+            if ('@ViewData["ifDrive"]' == "工艺部确认图纸接收") {
                 $.ajax({
                     url: "/TaskManagement/UpdateAcceptDesignFile",
                     data: { Taskid: taskid },
@@ -598,18 +598,18 @@
                         }
                     }
                 });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "工艺部完成工艺流程") {
+            }
+            if ('@ViewData["ifDrive"]' == "工艺部完成工艺流程") {
             window.parent.document.getElementById("rightframe").src = '/TaskManagement/TaskMapPart?TaskID=' + '@ViewData["ProcessFlow"]' + '&ProductName=' + '@ViewData["ProductNamed"]' + '&ProductSpec=' + '@ViewData["ProductSpecd"]';
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "设计部完成机械设计" || '@ViewData["ifDrive"]' == "设计部完成电气设计") {
+            }
+            if ('@ViewData["ifDrive"]' == "设计部完成机械设计" || '@ViewData["ifDrive"]' == "设计部完成电气设计") {
                 var url = '/TaskManagement/FinishMyDesign?ifDrive=' + '@ViewData["ifDrives"]' + '&name=' + '@ViewData["names"]' + '&ProjectName=' + '@ViewData["CustomerNames"]';
                 layer_show("完成我的设计", url, 1400, 800);
             }
             if ('@ViewData["ifDrive"]' == "设计部完成机械审核" || '@ViewData["ifDrive"]' == "设计部完成电气审核") {
                 layer_show("完成我的审核", '/TaskManagement/TaskScoring?ifDrive=' + '@ViewData["ifDrive"]', 1200, 700);
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "计划部确认计划分配") {
+            }
+            if ('@ViewData["ifDrive"]' == "计划部确认计划分配") {
                 $.ajax({
                     url: "/TaskManagement/UpdatePMCAssignConfirm",
                     data: { Taskid: taskid },
@@ -627,14 +627,14 @@
                         }
                     }
                 });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "计划部完成计划") {
+            }
+            if ('@ViewData["ifDrive"]' == "计划部完成计划") {
                 var pcName = $("#pcName").val();
                 var spec = $("#spec").val();
                 var TaskType = $("#TaskType").val();
                 window.parent.document.getElementById("rightframe").src = "/TaskManagement/PMCSettingWO?id=" + taskid + "&ProjectName=" + "@ViewData["CustomerNames"]" + "&pcName=" + pcName + "&spec=" + spec + "&TaskType=" + TaskType + "&Choose=" + Choose;
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "完成排产计划") {
+            }
+            if ('@ViewData["ifDrive"]' == "完成排产计划") {
                 $.ajax({
                     url: "/TaskManagement/Scheduling",
                     data: { Taskid: taskid },
@@ -652,8 +652,8 @@
                         }
                     }
                 });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "采购部确认采购分配") {
+            }
+            if ('@ViewData["ifDrive"]' == "采购部确认采购分配") {
                 $.ajax({
                     url: "/TaskManagement/CPurchase",
                     data: { Taskid: taskid },
@@ -671,51 +671,51 @@
                         }
                     }
                 });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "采购部完成采购") {
-                window.parent.document.getElementById("rightframe").src = "/TaskManagement/CompletePurchase?type=" + "@Session["type2"]"+"&id"+"@Session["id"]"+"&pjname="+"@ViewData["CustomerNamesv"]";
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "生产部确认生产任务分配") {
-                $.ajax({
-                    url: "/TaskManagement/ProductStartConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            @*if ('@ViewData["ifDrive"]' == "确认开始投料生产") {
-                $.ajax({
-                    url: "/TaskManagement/ProductStartConfirm",
-                    data: { Taskid: taskid },
-                    type: "post",
-                    dataType: "text",
-                    success: function (data) {
-                        if (data == "true") {
-                            window.setTimeout(function () {
-                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
-                            }, 500);
-                        }
-                        else {
-                            alert("确认失败!");
-                            return;
-                        }
-                    }
-                });
-            }*@
-            if ('@ViewData["ifDrive"]' == "生产部完成生产任务") {
-                window.parent.document.getElementById("rightframe").src = "/TaskManagement/ProductMS";
             }
+            if ('@ViewData["ifDrive"]' == "采购部完成采购") {
+                window.parent.document.getElementById("rightframe").src = "/TaskManagement/CompletePurchase?type=" + "@Session["type2"]"+"&id"+"@Session["id"]"+"&pjname="+"@ViewData["CustomerNamesv"]";
+            }
+            if ('@ViewData["ifDrive"]' == "生产部确认生产任务分配") {
+                $.ajax({
+                    url: "/TaskManagement/ProductStartConfirm",
+                    data: { Taskid: taskid },
+                    type: "post",
+                    dataType: "text",
+                    success: function (data) {
+                        if (data == "true") {
+                            window.setTimeout(function () {
+                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
+                            }, 500);
+                        }
+                        else {
+                            alert("确认失败!");
+                            return;
+                        }
+                    }
+                });
+            }
+            if ('@ViewData["ifDrive"]' == "确认开始投料生产") {
+                $.ajax({
+                    url: "/TaskManagement/ProductStartConfirm",
+                    data: { Taskid: taskid },
+                    type: "post",
+                    dataType: "text",
+                    success: function (data) {
+                        if (data == "true") {
+                            window.setTimeout(function () {
+                                window.parent.document.getElementById("rightframe").src = "/TaskManagement/NameTask?id=" + "@Session["id"]";
+                            }, 500);
+                        }
+                        else {
+                            alert("确认失败!");
+                            return;
+                        }
+                    }
+                });
+            }
+            @*if ('@ViewData["ifDrive"]' == "生产部完成生产任务") {
+                window.parent.document.getElementById("rightframe").src = "/TaskManagement/ProductMS";
+            }*@
         });
         $("#up").click(function () {
             layer_show("任务进度详细", '/TaskManagement/UpdateProgress', 1200, 700);
