@@ -21,8 +21,39 @@
     <script type="text/javascript">
         $(function () {           
             $("#addC").click(function () {
-                var sd = $("#u").text();
-                window.parent.document.getElementById("rightframe").src = sd;
+                var Select = $("#s option:selected").text();
+                var id;
+                if (Select == "成品仓") {
+                    id = 4;
+                } else if (Select == "五金仓") {
+                    id = 2;
+                }
+                else {
+                    id = 1;
+                }
+                if (Select == "--全部--") {
+                    layer.msg("请选择仓库！");
+                } else
+                {
+                    var url = "/SystemSettings/AddReservoir?id=" + id;
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        async: true,
+                        success: function (data) {
+                            if (data == "true") {
+                                layer.msg("添加成功", { icon: 6 });
+                                window.parent.document.getElementById("rightframe").src = "/SystemSettings/Reservoir"
+                            }
+                            if (data == "false") {
+                                layer.msg('添加失败!', { icon: 5 });
+                                return false;
+                            }
+
+                        }
+                    });
+                }
+               
             });
                    
             layui.use(['table', 'layer'], function () {
@@ -31,11 +62,15 @@
                     var Reservoir = $("#Reservoir").val().trim();
                     var Select = $("#s option:selected").text();                   
                     table.render({
-                        elem: '#tw'
+                    elem: '#tw'
                    , url: '/SystemSettings/CheckReservoir?select=' + Select + '&Reservoir=' + Reservoir
+                   , page: true
+                   , limit: 15
                    , cols: [[
-
-                   , { field: '库区', width: 210, title: '库区',edit:Text }
+                      , {
+                          field: '', width: 20, title: '', hide: true
+                      }
+                   , { field: 'WHArea', width: 150, title: '库区', edit: Text }
                    , { field: '描述', width: 210, title: '描述', edit: Text }
                    , { field: '仓库', width: 210, title: '仓库' }
                    , {
@@ -58,7 +93,7 @@
                                 id = data.序号;
 
                                 layer.close(index);
-                                var url = "/Home/DeleteContractd?id=" + id;
+                                var url = "/SystemSettings/DeleteReservoir?WHArea=" + id;
                                 $.ajax({
                                     url: url,
                                     type: 'post',
@@ -73,13 +108,36 @@
                                             layer.msg('数据操作异常!', { icon: 5 });
                                             return false;
                                         }
+                                        if (data == "Error") {
+                                            layer.msg('错误！存在货区不能删除！', { icon: 5 });
+                                            return false;
+                                        }
                                     }
                                 });
                             });
                             break;
                         case 'update':
                             id = data.序号;
-                            window.parent.document.getElementById("rightframe").src = "/Home/EditContract?id=" + id;
+                            wha = data.WHArea;
+                            ms = data.描述;
+                            wh = data.仓库;
+                            var url = "/SystemSettings/EditReservoir?id=" + id + "&wh=" + wha + "&ms="+ms+"&ck="+wh;
+                            $.ajax({
+                                url: url,
+                                type: 'post',
+                                async: true,
+                                success: function (data) {
+                                    if (data == "true") {
+                                        layer.msg("修改成功", { icon: 6 });
+                                        table.reload('tw');
+                                    }
+                                    if (data == "false") {
+                                        layer.msg('修改失败!', { icon: 5 });
+                                        return false;
+                                    }
+
+                                }
+                            });
                             break;
                     };
                 });
@@ -124,9 +182,9 @@
                 <li>
                     仓库：
                     <select name="quiz1" id="s">
-                        <option value="" selected="">全部</option>
+                        <option value="" selected="">--全部--</option>
                         <option value="五金仓">五金仓</option>
-                        <option value="半成品仓">半成品仓</option>
+                        <option value="原材料仓">原材料仓</option>
                         <option value="成品仓">成品仓</option>
                     </select>
                 </li>

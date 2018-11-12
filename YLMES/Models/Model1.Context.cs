@@ -341,6 +341,27 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckDropWhList_Result>("CheckDropWhList", tYPEParameter, wHIDParameter, wHAreaIDParameter, wHStorageLocationIDParameter);
         }
     
+        public virtual ObjectResult<CheckGoods_Result> CheckGoods(string wHArea, string wH, string wHStorageLocation, string wHGoodsAllocation)
+        {
+            var wHAreaParameter = wHArea != null ?
+                new ObjectParameter("WHArea", wHArea) :
+                new ObjectParameter("WHArea", typeof(string));
+    
+            var wHParameter = wH != null ?
+                new ObjectParameter("WH", wH) :
+                new ObjectParameter("WH", typeof(string));
+    
+            var wHStorageLocationParameter = wHStorageLocation != null ?
+                new ObjectParameter("WHStorageLocation", wHStorageLocation) :
+                new ObjectParameter("WHStorageLocation", typeof(string));
+    
+            var wHGoodsAllocationParameter = wHGoodsAllocation != null ?
+                new ObjectParameter("WHGoodsAllocation", wHGoodsAllocation) :
+                new ObjectParameter("WHGoodsAllocation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckGoods_Result>("CheckGoods", wHAreaParameter, wHParameter, wHStorageLocationParameter, wHGoodsAllocationParameter);
+        }
+    
         public virtual ObjectResult<CheckProcess_Result> CheckProcess(string partNumber)
         {
             var partNumberParameter = partNumber != null ?
@@ -355,6 +376,23 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckRouteName_Result>("CheckRouteName");
         }
     
+        public virtual ObjectResult<CheckStorage_Result> CheckStorage(string wHArea, string wH, string wHStorageLocation)
+        {
+            var wHAreaParameter = wHArea != null ?
+                new ObjectParameter("WHArea", wHArea) :
+                new ObjectParameter("WHArea", typeof(string));
+    
+            var wHParameter = wH != null ?
+                new ObjectParameter("WH", wH) :
+                new ObjectParameter("WH", typeof(string));
+    
+            var wHStorageLocationParameter = wHStorageLocation != null ?
+                new ObjectParameter("WHStorageLocation", wHStorageLocation) :
+                new ObjectParameter("WHStorageLocation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckStorage_Result>("CheckStorage", wHAreaParameter, wHParameter, wHStorageLocationParameter);
+        }
+    
         public virtual ObjectResult<CheckTaskProgress_Result> CheckTaskProgress(Nullable<int> taskid)
         {
             var taskidParameter = taskid.HasValue ?
@@ -362,6 +400,23 @@ namespace YLMES.Models
                 new ObjectParameter("Taskid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckTaskProgress_Result>("CheckTaskProgress", taskidParameter);
+        }
+    
+        public virtual ObjectResult<CheckWarehouse_Result> CheckWarehouse(string type, string wHArea, string wH)
+        {
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            var wHAreaParameter = wHArea != null ?
+                new ObjectParameter("WHArea", wHArea) :
+                new ObjectParameter("WHArea", typeof(string));
+    
+            var wHParameter = wH != null ?
+                new ObjectParameter("WH", wH) :
+                new ObjectParameter("WH", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckWarehouse_Result>("CheckWarehouse", typeParameter, wHAreaParameter, wHParameter);
         }
     
         public virtual int CreateBOM(Nullable<int> taskID, string createdBy)

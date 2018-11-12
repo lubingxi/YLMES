@@ -19,28 +19,77 @@
 
 
     <script type="text/javascript">
+        $(document).ready(init);
+        function ckone(ck) {
+            $.ajax({
+                url: "@Url.Action("kqd", "SystemSettings")",
+                data: { ck: ck },
+            success: function (data) {
+                $("#kq").html(data);
+            }
+        })
+        }
+        function init() {
+            var cc = null;
+
+            $("select[name='quiz1']").change(function () {
+                var ck = $("#s").val();              
+                ckone(ck);
+                cc = ck;
+            });      
+        }
         $(function () {
             $("#addC").click(function () {
-                var sd = $("#u").text();
-                window.parent.document.getElementById("rightframe").src = sd;
+                var Selectd = $("#s option:selected").val();
+                var Select = $("#Kq option:selected").val();
+                if (Selectd == "--全部--") {
+                    layer.msg("请选择仓库！");
+                }
+                else if (Select == "--全部--") {
+                    layer.msg("请选择库区！");
+                } else {
+                    var url = "/SystemSettings/AddLocation?id=" + Select;
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        async: true,
+                        success: function (data) {
+                            if (data == "true") {
+                                layer.msg("添加成功", { icon: 6 });
+                                window.parent.document.getElementById("rightframe").src = "/SystemSettings/Location"
+                            }
+                            if (data == "false") {
+                                layer.msg('添加失败!', { icon: 5 });
+                                return false;
+                            }
+
+                        }
+                    });
+                }
             });
 
             layui.use(['table', 'layer'], function () {
                 var table = layui.table, layer = layui.layer;
                 $(".layui-btn").click(function () {
-                    var Reservoir = $("#Reservoir").val().trim();
+                    var Reservoir = $("#Kq  option:selected").text();
                     var Select = $("#s option:selected").text();
+                    var Location = $("#Location").val();
                     table.render({
                         elem: '#tw'
-                   , url: '/SystemSettings/CheckLocation?select=' + Select + '&Reservoir=' + Reservoir
+                   , url: '/SystemSettings/CheckLocation?select=' + Select + '&Reservoir=' + Reservoir + '&location=' + Location
+                   , page: true
+                   ,limit:15
                    , cols: [[
-
-                   , { field: '库位', width: 210, title: '库位', edit: Text }
-                   , { field: '库区', width: 210, title: '库区', edit: Text }
-                   , { field: '仓库', width: 210, title: '仓库' }
                    , {
-                       field: '序号', width: 150, title: '序号'
-                   }
+                            field: '', width: 20, title: '',hide:true
+                        }
+                   , { field: '库位', width: 150, title: '库位', edit: Text }
+                   , { field: '描述', width: 150, title: '描述', edit: Text }                
+                   , { field: '库区', width: 210, title: '库区' }
+                   , { field: '仓库', width: 100, title: '仓库' }
+                   , {
+                         field: '序号', width: 60, title: '序号'
+                     }
                    , { field: 'right', width: 250, align: 'center', toolbar: '#barDemo' }
                    ]]
 
@@ -58,7 +107,7 @@
                                 id = data.序号;
 
                                 layer.close(index);
-                                var url = "/Home/DeleteContractd?id=" + id;
+                                var url = "/SystemSettings/DeleteLocation?id=" + id;
                                 $.ajax({
                                     url: url,
                                     type: 'post',
@@ -73,13 +122,36 @@
                                             layer.msg('数据操作异常!', { icon: 5 });
                                             return false;
                                         }
+                                        if (data == "Error") {
+                                            layer.msg('错误！存在货位不能删除！!', { icon: 5 });
+                                            return false;
+                                        }
                                     }
                                 });
                             });
                             break;
                         case 'update':
                             id = data.序号;
-                            window.parent.document.getElementById("rightframe").src = "/Home/EditContract?id=" + id;
+                            wha = data.库位;
+                            ms = data.描述;
+                            var url = "/SystemSettings/EditLocation?id=" + id + "&Slocation=" + wha + "&ms=" + ms;
+                            $.ajax({
+                                url: url,
+                                type: 'post',
+                                async: true,
+                                success: function (data) {
+                                    if (data == "true") {
+                                        layer.msg("修改成功", { icon: 6 });
+                                        table.reload('tw');
+                                    }
+                                    if (data == "false") {
+                                        layer.msg('修改失败!', { icon: 5 });
+                                        return false;
+                                    }
+
+                                }
+                            });
+                          
                             break;
                     };
                 });
@@ -107,7 +179,7 @@
         <ul class="placeul">
             <li><a href="#">首页</a></li>
             <li><a href="#">系统设置</a></li>
-            <li><a href="#">库区</a></li>
+            <li><a href="#">库位</a></li>
         </ul>
     </div>
 
@@ -124,19 +196,20 @@
                 <li>
                     仓库：
                     <select name="quiz1" id="s">
-                        <option value="" selected="">全部</option>
+                        <option value="" selected="">--全部--</option>
                         <option value="五金仓">五金仓</option>
-                        <option value="半成品仓">半成品仓</option>
+                        <option value="原材料仓">原材料仓</option>
                         <option value="成品仓">成品仓</option>
                     </select>
                 </li>
-                <li>
-                    库区：
-                    @Html.DropDownList("Reservoirs", new SelectList(ViewBag.Reservoirs, "id", "CategoryName"), "请选择", new { @class = "Reservoirs", @ID = "Reservoirs", @name = "Reservoirs" })                    
+                <li>            
+                    <div id="kq">
+                        @Html.Partial("kqd")
+                    </div>                               
                 </li>
                 <li>
-                    库位：
-                    <input class="Reservoir" id="Reservoir" type="text" style="width: 80px;" />
+                    货区：
+                    <input class="Location" id="Location" type="text" style="width: 80px;" />
                 </li>
 
             </ul>

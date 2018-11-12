@@ -255,13 +255,22 @@
     <Compile Include="Models\CheckDropWhList_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckGoods_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CheckProcess_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CheckRouteName_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckStorage_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CheckTaskProgress_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckWarehouse_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_Contract.cs">
@@ -697,6 +706,8 @@
     <Content Include="Views\SystemSettings\Reservoir.cshtml" />
     <Content Include="Views\SystemSettings\Location.cshtml" />
     <Content Include="Views\SystemSettings\Goods.cshtml" />
+    <Content Include="Views\SystemSettings\kqd.cshtml" />
+    <Content Include="Views\SystemSettings\kwd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

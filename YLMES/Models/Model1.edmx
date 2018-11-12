@@ -1302,12 +1302,28 @@
           <Parameter Name="WHAreaID" Type="varchar" Mode="In" />
           <Parameter Name="WHStorageLocationID" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="CheckGoods" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WHArea" Type="varchar" Mode="In" />
+          <Parameter Name="WH" Type="varchar" Mode="In" />
+          <Parameter Name="WHStorageLocation" Type="varchar" Mode="In" />
+          <Parameter Name="WHGoodsAllocation" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="CheckProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PartNumber" Type="varchar" Mode="In" />
         </Function>
         <Function Name="CheckRouteName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CheckStorage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WHArea" Type="varchar" Mode="In" />
+          <Parameter Name="WH" Type="varchar" Mode="In" />
+          <Parameter Name="WHStorageLocation" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="CheckTaskProgress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Taskid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CheckWarehouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Type" Type="varchar" Mode="In" />
+          <Parameter Name="WHArea" Type="varchar" Mode="In" />
+          <Parameter Name="WH" Type="varchar" Mode="In" />
         </Function>
         <Function Name="CreateBOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TaskID" Type="int" Mode="In" />
@@ -3991,12 +4007,28 @@
             <Parameter Name="WHAreaID" Mode="In" Type="String" />
             <Parameter Name="WHStorageLocationID" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="CheckGoods" ReturnType="Collection(YLMES_newModel.CheckGoods_Result)">
+            <Parameter Name="WHArea" Mode="In" Type="String" />
+            <Parameter Name="WH" Mode="In" Type="String" />
+            <Parameter Name="WHStorageLocation" Mode="In" Type="String" />
+            <Parameter Name="WHGoodsAllocation" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="CheckProcess" ReturnType="Collection(YLMES_newModel.CheckProcess_Result)">
             <Parameter Name="PartNumber" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CheckRouteName" ReturnType="Collection(YLMES_newModel.CheckRouteName_Result)" />
+          <FunctionImport Name="CheckStorage" ReturnType="Collection(YLMES_newModel.CheckStorage_Result)">
+            <Parameter Name="WHArea" Mode="In" Type="String" />
+            <Parameter Name="WH" Mode="In" Type="String" />
+            <Parameter Name="WHStorageLocation" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="CheckTaskProgress" ReturnType="Collection(YLMES_newModel.CheckTaskProgress_Result)">
             <Parameter Name="Taskid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CheckWarehouse" ReturnType="Collection(YLMES_newModel.CheckWarehouse_Result)">
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="WHArea" Mode="In" Type="String" />
+            <Parameter Name="WH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CreateBOM">
             <Parameter Name="TaskID" Mode="In" Type="Int32" />
@@ -4930,6 +4962,14 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="WHArea" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="CheckGoods_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="String" Name="货位" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="库位" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="库区" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="仓库" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="描述" Nullable="true" MaxLength="20" />
+        </ComplexType>
         <ComplexType Name="CheckProcess_Result">
           <Property Type="Int32" Name="编号" Nullable="false" />
           <Property Type="Int32" Name="流程名称" Nullable="false" />
@@ -4943,6 +4983,13 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="RouteName" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="CheckStorage_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="String" Name="库位" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="库区" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="仓库" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="描述" Nullable="true" MaxLength="20" />
+        </ComplexType>
         <ComplexType Name="CheckTaskProgress_Result">
           <Property Type="Int32" Name="TaskID" Nullable="false" />
           <Property Type="Int32" Name="Item" Nullable="true" />
@@ -4952,6 +4999,12 @@
           <Property Type="String" Name="CompletionDescription" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="CreatedBY" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="CreatedTIme" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="CheckWarehouse_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="String" Name="WHArea" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="描述" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="仓库" Nullable="false" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="DeleteProcessBOM_Result">
           <Property Type="Int32" Name="序号" Nullable="false" />
@@ -6923,6 +6976,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CheckGoods" FunctionName="YLMES_newModel.Store.CheckGoods">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.CheckGoods_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="货位" ColumnName="货位" />
+                <ScalarProperty Name="库位" ColumnName="库位" />
+                <ScalarProperty Name="库区" ColumnName="库区" />
+                <ScalarProperty Name="仓库" ColumnName="仓库" />
+                <ScalarProperty Name="描述" ColumnName="描述" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CheckProcess" FunctionName="YLMES_newModel.Store.CheckProcess">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.CheckProcess_Result">
@@ -6944,6 +7009,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CheckStorage" FunctionName="YLMES_newModel.Store.CheckStorage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.CheckStorage_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="库位" ColumnName="库位" />
+                <ScalarProperty Name="库区" ColumnName="库区" />
+                <ScalarProperty Name="仓库" ColumnName="仓库" />
+                <ScalarProperty Name="描述" ColumnName="描述" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CheckTaskProgress" FunctionName="YLMES_newModel.Store.CheckTaskProgress">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.CheckTaskProgress_Result">
@@ -6955,6 +7031,16 @@
                 <ScalarProperty Name="CompletionDescription" ColumnName="CompletionDescription" />
                 <ScalarProperty Name="CreatedBY" ColumnName="CreatedBY" />
                 <ScalarProperty Name="CreatedTIme" ColumnName="CreatedTIme" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CheckWarehouse" FunctionName="YLMES_newModel.Store.CheckWarehouse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.CheckWarehouse_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="WHArea" ColumnName="WHArea" />
+                <ScalarProperty Name="描述" ColumnName="描述" />
+                <ScalarProperty Name="仓库" ColumnName="仓库" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
