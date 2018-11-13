@@ -159,10 +159,28 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="control\css\zyUpload.css" />
+    <Content Include="control\images\add_img.png" />
+    <Content Include="control\images\bg.png" />
+    <Content Include="control\images\delete_blue.png" />
+    <Content Include="control\images\delete_white.png" />
+    <Content Include="control\images\fileType\file.png" />
+    <Content Include="control\images\fileType\rar.png" />
+    <Content Include="control\images\fileType\txt.png" />
+    <Content Include="control\images\fileType\zip.png" />
+    <Content Include="control\images\success.png" />
+    <Content Include="control\js\jquery-1.7.2.js" />
+    <Content Include="control\js\zyUpload.js" />
+    <Content Include="core\lanrenzhijia.js" />
+    <Content Include="core\zyFile.js" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\fresh-bootstrap-table.css" />
     <Content Include="css\styled.css" />
+    <Content Include="fonts\font-awesome-4.2.0\css\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\1494962.jpg" />
+    <Content Include="images\1494962_1284787944.jpg" />
     <Content Include="images\2000px-App_Store_OS_X.svg.png" />
     <Content Include="images\2000px-Google_Chrome_icon_%282011%29.svg.png" />
     <Content Include="images\Button-Fill-White-Large.png" />
@@ -194,6 +212,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="control\images\fileType\Thumbs.db" />
+    <Content Include="control\images\Thumbs.db" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.woff" />
     <None Include="Properties\PublishProfiles\YLMESNew.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="css\bootstrap-table.css" />
@@ -225,6 +248,7 @@
     <Compile Include="Controllers\RmsController.cs" />
     <Compile Include="Controllers\SystemSettingsController.cs" />
     <Compile Include="Controllers\TaskManagementController.cs" />
+    <Compile Include="Controllers\TechnicalDepartmentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,6 +288,9 @@
     <Compile Include="Models\CheckRouteName_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckStationType_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CheckStorage_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -289,6 +316,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_Contract_ReceivablesHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DeleteLocationType_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DeleteProcessBOM_Result.cs">
@@ -603,6 +633,9 @@
     <Compile Include="Models\SP_PM_WH_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StationType_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TableStatus.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -619,6 +652,15 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tttb.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WOCheck_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WOdetail_byStation_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WOdetail_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="PageList.cs" />
@@ -708,6 +750,12 @@
     <Content Include="Views\SystemSettings\Goods.cshtml" />
     <Content Include="Views\SystemSettings\kqd.cshtml" />
     <Content Include="Views\SystemSettings\kwd.cshtml" />
+    <Content Include="Views\SystemSettings\LocationType.cshtml" />
+    <Content Include="Views\ProductionPlanning\WorkManagement.cshtml" />
+    <Content Include="Views\ProductionPlanning\Contract_Checks.cshtml" />
+    <Content Include="Views\ProductionPlanning\RoDetail.cshtml" />
+    <Content Include="Views\ProductionPlanning\ByStation.cshtml" />
+    <Content Include="Views\TechnicalDepartment\UploadTheDrawings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -720,7 +768,6 @@
     <Folder Include="assets\" />
     <Folder Include="BOM\" />
     <Folder Include="editor\" />
-    <Folder Include="fonts\" />
     <Folder Include="font\" />
     <Folder Include="js\" />
     <Folder Include="layui\" />

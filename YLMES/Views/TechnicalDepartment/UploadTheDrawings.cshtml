@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+
+
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>友力信息管理系统</title>
+    <!-- 引用控制层插件样式 -->
+    <link rel="stylesheet" href="~/control/css/zyUpload.css" type="text/css">
+    <script type="text/javascript" src="~/lib/jquery/1.9.1/jquery.min.js"></script>
+    <!-- 引用核心层插件 -->
+    <script src="~/core/zyFile.js"></script>
+    <!-- 引用控制层插件 -->
+    <script src="~/control/js/zyUpload.js"></script>
+    <!-- 引用初始化JS -->
+    <script src="~/core/lanrenzhijia.js"></script>
+
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        #oText {
+            border: 1px dotted #ff0000;
+            ryo: expression(onfocus=function light (){with(document.all.oText){style.borderColor=(style.borderColor=="#ffee00"?"#ff0000":"#ffee00");timer=setTimeout(light,500);}},onblur=function(){this.style.borderColor="#ff0000";clearTimeout(timer)});
+        }
+
+        
+    </style>
+</head>
+
+
+<body style="background-size:100%;background-image:url(../../images/1494962.jpg);background-repeat:no-repeat;overflow:hidden;background-position:center top;">
+
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">技术部</a></li>
+            <li><a href="#">上传图纸</a></li>
+        </ul>
+    </div>
+    <div id="demo" class="demo"></div>
+
+
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+</body>
+</html>

@@ -11,9 +11,15 @@ namespace YLMES.Models
 {
     using System;
     
-    public partial class PM_EditAccessSetup_Result
+    public partial class DeleteLocationType_Result
     {
-        public string 姓名 { get; set; }
-        public string 功能名称 { get; set; }
+        public int 序号 { get; set; }
+        public string 工位编码 { get; set; }
+        public string 工位类型 { get; set; }
+        public string 创建人 { get; set; }
+        public string 创建时间 { get; set; }
+        public string 更新人 { get; set; }
+        public string 更新时间 { get; set; }
+        public string 状态 { get; set; }
     }
 }

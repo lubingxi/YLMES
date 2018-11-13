@@ -488,5 +488,137 @@ namespace YlMES.Controllers
 
         #endregion
 
+        #region 工单管理
+        //工单页面
+        public ActionResult WorkManagement()
+        {
+            return View();
+        }
+        //显示工单信息
+        public ActionResult CheckWorkManagement(string CName, string CNumber, string RepairOrder, string strattime, string endtime, int page, int limit)
+        {
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+                SqlParameter[] parms = new SqlParameter[5];
+                parms[0] = new SqlParameter("@CustomerName", CName);
+                parms[1] = new SqlParameter("@ContractNumber", CNumber);
+                parms[2] = new SqlParameter("@WorkorderNO", RepairOrder);
+                parms[3] = new SqlParameter("@CreateTime", strattime);
+                parms[4] = new SqlParameter("@CreateTimeTo", endtime);
+                var list = ys.Database.SqlQuery<WOCheck_Result>("exec WOCheck @CustomerName,@ContractNumber,@WorkorderNO,@CreateTime,@CreateTimeTo", parms).ToList();
+                Dictionary<string, Object> hasmap = new Dictionary<string, Object>();
+                PageList<WOCheck_Result> pageList = new PageList<WOCheck_Result>(list, page, limit);
+                int count = list.Count();
+                hasmap.Add("code", 0);
+                hasmap.Add("msg", "");
+                hasmap.Add("count", count);
+                hasmap.Add("data", pageList);
+                return Json(hasmap, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //显示合同详细信息
+        public ActionResult Contract_Checks(string id)
+        {
+            //显示合同信息
+            XianShiContracts(id);
+            ViewData["ContractDetialsCheckId"] = id;
+            return View();
+        }
+        public void XianShiContracts(string id)
+        {
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+
+                SqlParameter[] parms = new SqlParameter[20];
+                parms[0] = new SqlParameter("@type", "checkByContractID");
+                parms[1] = new SqlParameter("@ID", id);
+                parms[2] = new SqlParameter("@CustomerName", "");
+                parms[3] = new SqlParameter("@ContractNumber", "");
+                parms[4] = new SqlParameter("@DateOfSign", "");
+                parms[5] = new SqlParameter("@Money", 315000.00);
+                parms[6] = new SqlParameter("@PaymentMethod", "");
+                parms[7] = new SqlParameter("@IfInstall", "");
+                parms[8] = new SqlParameter("@IfTransport", "");
+                parms[9] = new SqlParameter("@IfIncludeTax", "");
+                parms[10] = new SqlParameter("@DeliveryTime", "");
+                parms[11] = new SqlParameter("@ConditionsOfbreachOfContract", "");
+                parms[12] = new SqlParameter("@Summary", "");
+                parms[13] = new SqlParameter("@CreatedBy", "");
+                parms[14] = new SqlParameter("@CreatedTime", "");
+                parms[15] = new SqlParameter("@StatusID", "");
+                parms[16] = new SqlParameter("@CreatedTimeStart", "");
+                parms[17] = new SqlParameter("@CreatedTimeEnd", "");
+                parms[18] = new SqlParameter("@AmountCollected", 927335.85);
+                parms[19] = new SqlParameter("@ProductOrderStatus", "");
+                var list = ys.Database.SqlQuery<SP_ContractEdit_Result>("exec SP_ContractEdit @type,@ID,@CustomerName,@ContractNumber,@DateOfSign,@Money,@PaymentMethod,@IfInstall,@IfTransport,@IfIncludeTax,@DeliveryTime," +
+               "@ConditionsOfbreachOfContract,@Summary,@CreatedBy,@CreatedTime,@StatusID,@CreatedTimeStart,@CreatedTimeEnd,@AmountCollected,@ProductOrderStatus", parms).FirstOrDefault();
+
+                ViewData["CuName"] = list.CustomerName;
+                ViewData["CuNumber"] = list.ContractNumber;
+                ViewData["Money"] = list.合同金额;
+                ViewData["IfInstall"] = list.是否安装;
+                ViewData["id"] = list.id;
+                ViewData["select"] = list.合同状态;
+                ViewData["IfIncludeTax"] = list.是否含税;
+                ViewData["AmountCollected"] = list.收款金额;
+                ViewData["DateOfSign"] = list.合同签订日期;
+                ViewData["IfTransport"] = list.是否运输;
+                ViewData["Pay"] = list.收款方式;
+                ViewData["SendDate"] = list.交期;
+                ViewData["weiyuetiaojian"] = list.违约条件;
+                ViewData["CZongJie"] = list.合同总结;
+            }
+
+        }
+        //工单详细信息页面
+        public ActionResult RoDetail(string id)         
+        {
+            ViewData["gongdan"] = id;
+            TempData["fanhui"] = id;
+            return View();
+        }
+        //显示工单详细信息
+        public ActionResult CheckRoDetail()
+        {
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+                string returns = TempData["fanhui"].ToString();
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@WorkorderNO", returns);
+                var list = ys.Database.SqlQuery<WOdetail_Result>("exec WOdetail  @WorkorderNO", parms).ToList();
+                Dictionary<string, Object> hasmap = new Dictionary<string, Object>();
+                hasmap.Add("code", 0);
+                hasmap.Add("msg", "");
+                hasmap.Add("data", list);
+                return Json(hasmap, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //工单详细
+        public ActionResult ByStation(string type, string dan)
+        {
+            ViewData["type"] = type;
+            ViewData["dan"] = dan;
+            return View();
+        }
+        //显示工单详细
+        public ActionResult CheckByStation()
+        {
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+                string type = ViewData["type"].ToString();
+                string dan = ViewData["dan"].ToString();
+                SqlParameter[] parms = new SqlParameter[2];
+                parms[0] = new SqlParameter("@StationType", type);
+                parms[1] = new SqlParameter("@WorkorderNO", dan);
+                var list = ys.Database.SqlQuery<WOdetail_byStation_Result>("exec WOdetail_byStation  @StationType,@WorkorderNO", parms).ToList();
+                Dictionary<string, Object> hasmap = new Dictionary<string, Object>();
+                hasmap.Add("code", 0);
+                hasmap.Add("msg", "");
+                hasmap.Add("data", list);
+                return Json(hasmap, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
     }
 }

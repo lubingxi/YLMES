@@ -1236,6 +1236,9 @@
           <Parameter Name="ChildPartID" Type="int" Mode="In" />
           <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="AddLocationType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="AddMerial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Level" Type="varchar" Mode="In" />
           <Parameter Name="FigureNumber" Type="varchar" Mode="In" />
@@ -1259,6 +1262,13 @@
         </Function>
         <Function Name="AddRoute" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Route" Type="int" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddWH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TYPE" Type="varchar" Mode="In" />
+          <Parameter Name="WHID" Type="int" Mode="In" />
+          <Parameter Name="WHAreaID" Type="int" Mode="In" />
+          <Parameter Name="WHStorageLocationID" Type="int" Mode="In" />
           <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
         </Function>
         <Function Name="AddWork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1312,6 +1322,9 @@
           <Parameter Name="PartNumber" Type="varchar" Mode="In" />
         </Function>
         <Function Name="CheckRouteName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CheckStationType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StationType" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="CheckStorage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="WHArea" Type="varchar" Mode="In" />
           <Parameter Name="WH" Type="varchar" Mode="In" />
@@ -1336,6 +1349,10 @@
           <Parameter Name="PartNumber" Type="varchar" Mode="In" />
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="DeleteLocationType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StationTypeID" Type="int" Mode="In" />
+          <Parameter Name="StationType" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="DeleteProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
@@ -1347,14 +1364,38 @@
           <Parameter Name="TaskID" Type="int" Mode="In" />
           <Parameter Name="Item" Type="int" Mode="In" />
         </Function>
+        <Function Name="DeleteWH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TYPE" Type="varchar" Mode="In" />
+          <Parameter Name="WHAreaID" Type="int" Mode="In" />
+          <Parameter Name="WHStorageLocationID" Type="int" Mode="In" />
+          <Parameter Name="WHGoodsAllocationID" Type="int" Mode="In" />
+          <Parameter Name="MSG" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="EditAccessSetup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EditLocationType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StationTypeID" Type="int" Mode="In" />
+          <Parameter Name="StationTypeNumber" Type="varchar" Mode="In" />
+          <Parameter Name="StationType" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
         </Function>
         <Function Name="EditProcessBOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="PartNumber" Type="varchar" Mode="In" />
           <Parameter Name="ChildPartQTY" Type="varchar" Mode="In" />
           <Parameter Name="ChildPartNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EditWH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TYPE" Type="varchar" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="WHID" Type="int" Mode="In" />
+          <Parameter Name="WH" Type="varchar" Mode="In" />
+          <Parameter Name="WHArea" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+          <Parameter Name="desc" Type="varchar" Mode="In" />
+          <Parameter Name="WHStorageLocation" Type="varchar" Mode="In" />
+          <Parameter Name="WHGoodsAllocation" Type="varchar" Mode="In" />
         </Function>
         <Function Name="force_updataBuye" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProjectID" Type="int" Mode="In" />
@@ -1419,6 +1460,7 @@
           <Parameter Name="UserName" Type="varchar" Mode="In" />
           <Parameter Name="FunctionName" Type="varchar" Mode="In" />
           <Parameter Name="Status" Type="int" Mode="In" />
+          <Parameter Name="typeid" Type="int" Mode="In" />
         </Function>
         <Function Name="PM_ProjectCheckTask2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProjectName" Type="varchar" Mode="In" />
@@ -2105,6 +2147,9 @@
           <Parameter Name="Employee" Type="varchar" Mode="In" />
           <Parameter Name="Status" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="StationType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StationType" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="TaskCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TaskID" Type="int" Mode="In" />
         </Function>
@@ -2220,6 +2265,20 @@
           <Parameter Name="CompletionDescription" Type="varchar" Mode="In" />
         </Function>
         <Function Name="upStork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="WOCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerName" Type="varchar" Mode="In" />
+          <Parameter Name="ContractNumber" Type="varchar" Mode="In" />
+          <Parameter Name="WorkorderNO" Type="varchar" Mode="In" />
+          <Parameter Name="CreateTime" Type="varchar" Mode="In" />
+          <Parameter Name="CreateTimeTo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="WOdetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WorkorderNO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="WOdetail_byStation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StationType" Type="varchar" Mode="In" />
+          <Parameter Name="WorkorderNO" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="www" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TYPE" Type="varchar" Mode="In" />
           <Parameter Name="ID" Type="int" Mode="In" />
@@ -3941,6 +4000,9 @@
             <Parameter Name="ChildPartID" Mode="In" Type="Int32" />
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AddLocationType">
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="AddMerial">
             <Parameter Name="Level" Mode="In" Type="String" />
             <Parameter Name="FigureNumber" Mode="In" Type="String" />
@@ -3964,6 +4026,13 @@
           </FunctionImport>
           <FunctionImport Name="AddRoute">
             <Parameter Name="Route" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddWH">
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+            <Parameter Name="WHID" Mode="In" Type="Int32" />
+            <Parameter Name="WHAreaID" Mode="In" Type="Int32" />
+            <Parameter Name="WHStorageLocationID" Mode="In" Type="Int32" />
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddWork">
@@ -4017,6 +4086,9 @@
             <Parameter Name="PartNumber" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CheckRouteName" ReturnType="Collection(YLMES_newModel.CheckRouteName_Result)" />
+          <FunctionImport Name="CheckStationType" ReturnType="Collection(YLMES_newModel.CheckStationType_Result)">
+            <Parameter Name="StationType" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="CheckStorage" ReturnType="Collection(YLMES_newModel.CheckStorage_Result)">
             <Parameter Name="WHArea" Mode="In" Type="String" />
             <Parameter Name="WH" Mode="In" Type="String" />
@@ -4041,6 +4113,10 @@
             <Parameter Name="PartNumber" Mode="In" Type="String" />
             <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="DeleteLocationType" ReturnType="Collection(YLMES_newModel.DeleteLocationType_Result)">
+            <Parameter Name="StationTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="StationType" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="DeleteProcess">
             <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -4052,14 +4128,38 @@
             <Parameter Name="TaskID" Mode="In" Type="Int32" />
             <Parameter Name="Item" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="DeleteWH">
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+            <Parameter Name="WHAreaID" Mode="In" Type="Int32" />
+            <Parameter Name="WHStorageLocationID" Mode="In" Type="Int32" />
+            <Parameter Name="WHGoodsAllocationID" Mode="In" Type="Int32" />
+            <Parameter Name="MSG" Mode="InOut" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="EditAccessSetup" ReturnType="Collection(YLMES_newModel.EditAccessSetup_Result)">
             <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EditLocationType">
+            <Parameter Name="StationTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="StationTypeNumber" Mode="In" Type="String" />
+            <Parameter Name="StationType" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="EditProcessBOM">
             <Parameter Name="ID" Mode="In" Type="Int32" />
             <Parameter Name="PartNumber" Mode="In" Type="String" />
             <Parameter Name="ChildPartQTY" Mode="In" Type="String" />
             <Parameter Name="ChildPartNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EditWH">
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="WHID" Mode="In" Type="Int32" />
+            <Parameter Name="WH" Mode="In" Type="String" />
+            <Parameter Name="WHArea" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="desc" Mode="In" Type="String" />
+            <Parameter Name="WHStorageLocation" Mode="In" Type="String" />
+            <Parameter Name="WHGoodsAllocation" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="force_updataBuye">
             <Parameter Name="ProjectID" Mode="In" Type="Int32" />
@@ -4124,6 +4224,7 @@
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="FunctionName" Mode="In" Type="String" />
             <Parameter Name="Status" Mode="In" Type="Int32" />
+            <Parameter Name="typeid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PM_ProjectCheckTask2" ReturnType="Collection(YLMES_newModel.PM_ProjectCheckTask2_Result)">
             <Parameter Name="ProjectName" Mode="In" Type="String" />
@@ -4810,6 +4911,9 @@
             <Parameter Name="Employee" Mode="In" Type="String" />
             <Parameter Name="Status" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="StationType" ReturnType="Collection(YLMES_newModel.StationType_Result)">
+            <Parameter Name="StationType" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="TaskCheck" ReturnType="Collection(YLMES_newModel.TaskCheck_Result)">
             <Parameter Name="TaskID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -4925,6 +5029,20 @@
             <Parameter Name="CompletionDescription" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="upStork" />
+          <FunctionImport Name="WOCheck" ReturnType="Collection(YLMES_newModel.WOCheck_Result)">
+            <Parameter Name="CustomerName" Mode="In" Type="String" />
+            <Parameter Name="ContractNumber" Mode="In" Type="String" />
+            <Parameter Name="WorkorderNO" Mode="In" Type="String" />
+            <Parameter Name="CreateTime" Mode="In" Type="String" />
+            <Parameter Name="CreateTimeTo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="WOdetail" ReturnType="Collection(YLMES_newModel.WOdetail_Result)">
+            <Parameter Name="WorkorderNO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="WOdetail_byStation" ReturnType="Collection(YLMES_newModel.WOdetail_byStation_Result)">
+            <Parameter Name="StationType" Mode="In" Type="String" />
+            <Parameter Name="WorkorderNO" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="www" ReturnType="Collection(Int32)">
             <Parameter Name="TYPE" Mode="In" Type="String" />
             <Parameter Name="ID" Mode="In" Type="Int32" />
@@ -4983,6 +5101,16 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="RouteName" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="CheckStationType_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="String" Name="工位编码" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="工位类型" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="创建人" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="创建时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="更新人" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="更新时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="状态" Nullable="true" MaxLength="20" />
+        </ComplexType>
         <ComplexType Name="CheckStorage_Result">
           <Property Type="Int32" Name="序号" Nullable="false" />
           <Property Type="String" Name="库位" Nullable="false" MaxLength="20" />
@@ -5005,6 +5133,16 @@
           <Property Type="String" Name="WHArea" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="描述" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="仓库" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="DeleteLocationType_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="String" Name="工位编码" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="工位类型" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="创建人" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="创建时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="更新人" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="更新时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="状态" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="DeleteProcessBOM_Result">
           <Property Type="Int32" Name="序号" Nullable="false" />
@@ -5120,8 +5258,8 @@
           <Property Type="String" Name="StatusID" Nullable="false" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="PM_EditAccessSetup_Result">
-          <Property Type="String" Name="功能名称" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="姓名" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="功能名称" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="PM_ProjectCheckTask2_Result">
           <Property Type="String" Name="项目名称" Nullable="false" MaxLength="200" />
@@ -5607,6 +5745,16 @@
           <Property Type="String" Name="货区" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="货位" Nullable="false" MaxLength="20" />
         </ComplexType>
+        <ComplexType Name="StationType_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="String" Name="工位编码" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="工位类型" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="创建人" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="创建时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="更新人" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="更新时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="状态" Nullable="true" MaxLength="20" />
+        </ComplexType>
         <ComplexType Name="TaskCheck_Result">
           <Property Type="String" Name="项目名称" Nullable="false" MaxLength="200" />
           <Property Type="String" Name="客户名称" Nullable="true" MaxLength="200" />
@@ -5714,6 +5862,41 @@
           <Property Type="Double" Name="工单数量" Nullable="true" />
           <Property Type="String" Name="工单名称" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="生成工单" Nullable="false" MaxLength="12" />
+        </ComplexType>
+        <ComplexType Name="WOCheck_Result">
+          <Property Type="Int32" Name="工单编号" Nullable="false" />
+          <Property Type="Int32" Name="项目编号" Nullable="false" />
+          <Property Type="String" Name="项目名称" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="产品名称" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="工单" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="总套数" Nullable="true" />
+          <Property Type="Int32" Name="每套数量" Nullable="true" />
+          <Property Type="Int32" Name="总数量" Nullable="true" />
+          <Property Type="Int32" Name="完成数量" Nullable="true" />
+          <Property Type="String" Name="状态" Nullable="false" MaxLength="6" />
+        </ComplexType>
+        <ComplexType Name="WOdetail_Result">
+          <Property Type="String" Name="工单" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="工位类型" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="开始时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="结束时间" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="工单套数" Nullable="true" />
+          <Property Type="Int32" Name="收料数量" Nullable="true" />
+          <Property Type="Int32" Name="完成数量" Nullable="true" />
+          <Property Type="Int32" Name="坏品数量" Nullable="true" />
+          <Property Type="Int32" Name="转工序数量" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="WOdetail_byStation_Result">
+          <Property Type="String" Name="工单" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="工位类型" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="开始时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="结束时间" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="工单套数" Nullable="true" />
+          <Property Type="Int32" Name="收料数量" Nullable="true" />
+          <Property Type="Int32" Name="完成数量" Nullable="true" />
+          <Property Type="Int32" Name="坏品数量" Nullable="true" />
+          <Property Type="Int32" Name="转工序数量" Nullable="true" />
+          <Property Type="String" Name="员工" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -6914,10 +7097,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AddchildThing" FunctionName="YLMES_newModel.Store.AddchildThing" />
+          <FunctionImportMapping FunctionImportName="AddLocationType" FunctionName="YLMES_newModel.Store.AddLocationType" />
           <FunctionImportMapping FunctionImportName="AddMerial" FunctionName="YLMES_newModel.Store.AddMerial" />
           <FunctionImportMapping FunctionImportName="AddPM_MaterialList" FunctionName="YLMES_newModel.Store.AddPM_MaterialList" />
           <FunctionImportMapping FunctionImportName="AddProcessBOM" FunctionName="YLMES_newModel.Store.AddProcessBOM" />
           <FunctionImportMapping FunctionImportName="AddRoute" FunctionName="YLMES_newModel.Store.AddRoute" />
+          <FunctionImportMapping FunctionImportName="AddWH" FunctionName="YLMES_newModel.Store.AddWH" />
           <FunctionImportMapping FunctionImportName="AddWork" FunctionName="YLMES_newModel.Store.AddWork" />
           <FunctionImportMapping FunctionImportName="checkBOM" FunctionName="YLMES_newModel.Store.checkBOM">
             <ResultMapping>
@@ -7009,6 +7194,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CheckStationType" FunctionName="YLMES_newModel.Store.CheckStationType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.CheckStationType_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="工位编码" ColumnName="工位编码" />
+                <ScalarProperty Name="工位类型" ColumnName="工位类型" />
+                <ScalarProperty Name="创建人" ColumnName="创建人" />
+                <ScalarProperty Name="创建时间" ColumnName="创建时间" />
+                <ScalarProperty Name="更新人" ColumnName="更新人" />
+                <ScalarProperty Name="更新时间" ColumnName="更新时间" />
+                <ScalarProperty Name="状态" ColumnName="状态" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CheckStorage" FunctionName="YLMES_newModel.Store.CheckStorage">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.CheckStorage_Result">
@@ -7047,6 +7246,20 @@
           <FunctionImportMapping FunctionImportName="CreateBOM" FunctionName="YLMES_newModel.Store.CreateBOM" />
           <FunctionImportMapping FunctionImportName="DeleteAll" FunctionName="YLMES_newModel.Store.DeleteAll" />
           <FunctionImportMapping FunctionImportName="DeleteBOM" FunctionName="YLMES_newModel.Store.DeleteBOM" />
+          <FunctionImportMapping FunctionImportName="DeleteLocationType" FunctionName="YLMES_newModel.Store.DeleteLocationType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.DeleteLocationType_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="工位编码" ColumnName="工位编码" />
+                <ScalarProperty Name="工位类型" ColumnName="工位类型" />
+                <ScalarProperty Name="创建人" ColumnName="创建人" />
+                <ScalarProperty Name="创建时间" ColumnName="创建时间" />
+                <ScalarProperty Name="更新人" ColumnName="更新人" />
+                <ScalarProperty Name="更新时间" ColumnName="更新时间" />
+                <ScalarProperty Name="状态" ColumnName="状态" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="DeleteProcess" FunctionName="YLMES_newModel.Store.DeleteProcess" />
           <FunctionImportMapping FunctionImportName="DeleteProcessBOM" FunctionName="YLMES_newModel.Store.DeleteProcessBOM">
             <ResultMapping>
@@ -7064,6 +7277,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="DeleteTaskProgress" FunctionName="YLMES_newModel.Store.DeleteTaskProgress" />
+          <FunctionImportMapping FunctionImportName="DeleteWH" FunctionName="YLMES_newModel.Store.DeleteWH" />
           <FunctionImportMapping FunctionImportName="EditAccessSetup" FunctionName="YLMES_newModel.Store.EditAccessSetup">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.EditAccessSetup_Result">
@@ -7072,7 +7286,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EditLocationType" FunctionName="YLMES_newModel.Store.EditLocationType" />
           <FunctionImportMapping FunctionImportName="EditProcessBOM" FunctionName="YLMES_newModel.Store.EditProcessBOM" />
+          <FunctionImportMapping FunctionImportName="EditWH" FunctionName="YLMES_newModel.Store.EditWH" />
           <FunctionImportMapping FunctionImportName="force_updataBuye" FunctionName="YLMES_newModel.Store.force_updataBuye" />
           <FunctionImportMapping FunctionImportName="GeneratPO" FunctionName="YLMES_newModel.Store.GeneratPO" />
           <FunctionImportMapping FunctionImportName="getPatnumer" FunctionName="YLMES_newModel.Store.getPatnumer">
@@ -7206,8 +7422,8 @@
           <FunctionImportMapping FunctionImportName="PM_EditAccessSetup" FunctionName="YLMES_newModel.Store.PM_EditAccessSetup">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.PM_EditAccessSetup_Result">
-                <ScalarProperty Name="功能名称" ColumnName="功能名称" />
                 <ScalarProperty Name="姓名" ColumnName="姓名" />
+                <ScalarProperty Name="功能名称" ColumnName="功能名称" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7856,6 +8072,20 @@
           <FunctionImportMapping FunctionImportName="SP_PM_Workorder" FunctionName="YLMES_newModel.Store.SP_PM_Workorder" />
           <FunctionImportMapping FunctionImportName="SP_PM_WorkOrderHistory" FunctionName="YLMES_newModel.Store.SP_PM_WorkOrderHistory" />
           <FunctionImportMapping FunctionImportName="SP_PM_WorkOrderMaterialPickList" FunctionName="YLMES_newModel.Store.SP_PM_WorkOrderMaterialPickList" />
+          <FunctionImportMapping FunctionImportName="StationType" FunctionName="YLMES_newModel.Store.StationType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.StationType_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="工位编码" ColumnName="工位编码" />
+                <ScalarProperty Name="工位类型" ColumnName="工位类型" />
+                <ScalarProperty Name="创建人" ColumnName="创建人" />
+                <ScalarProperty Name="创建时间" ColumnName="创建时间" />
+                <ScalarProperty Name="更新人" ColumnName="更新人" />
+                <ScalarProperty Name="更新时间" ColumnName="更新时间" />
+                <ScalarProperty Name="状态" ColumnName="状态" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TaskCheck" FunctionName="YLMES_newModel.Store.TaskCheck">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.TaskCheck_Result">
@@ -7993,6 +8223,53 @@
           <FunctionImportMapping FunctionImportName="UpdateTaskForChangeOwner" FunctionName="YLMES_newModel.Store.UpdateTaskForChangeOwner" />
           <FunctionImportMapping FunctionImportName="UpdateTaskProgress" FunctionName="YLMES_newModel.Store.UpdateTaskProgress" />
           <FunctionImportMapping FunctionImportName="upStork" FunctionName="YLMES_newModel.Store.upStork" />
+          <FunctionImportMapping FunctionImportName="WOCheck" FunctionName="YLMES_newModel.Store.WOCheck">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.WOCheck_Result">
+                <ScalarProperty Name="工单编号" ColumnName="工单编号" />
+                <ScalarProperty Name="项目编号" ColumnName="项目编号" />
+                <ScalarProperty Name="项目名称" ColumnName="项目名称" />
+                <ScalarProperty Name="产品名称" ColumnName="产品名称" />
+                <ScalarProperty Name="工单" ColumnName="工单" />
+                <ScalarProperty Name="总套数" ColumnName="总套数" />
+                <ScalarProperty Name="每套数量" ColumnName="每套数量" />
+                <ScalarProperty Name="总数量" ColumnName="总数量" />
+                <ScalarProperty Name="完成数量" ColumnName="完成数量" />
+                <ScalarProperty Name="状态" ColumnName="状态" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="WOdetail" FunctionName="YLMES_newModel.Store.WOdetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.WOdetail_Result">
+                <ScalarProperty Name="工单" ColumnName="工单" />
+                <ScalarProperty Name="工位类型" ColumnName="工位类型" />
+                <ScalarProperty Name="开始时间" ColumnName="开始时间" />
+                <ScalarProperty Name="结束时间" ColumnName="结束时间" />
+                <ScalarProperty Name="工单套数" ColumnName="工单套数" />
+                <ScalarProperty Name="收料数量" ColumnName="收料数量" />
+                <ScalarProperty Name="完成数量" ColumnName="完成数量" />
+                <ScalarProperty Name="坏品数量" ColumnName="坏品数量" />
+                <ScalarProperty Name="转工序数量" ColumnName="转工序数量" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="WOdetail_byStation" FunctionName="YLMES_newModel.Store.WOdetail_byStation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.WOdetail_byStation_Result">
+                <ScalarProperty Name="工单" ColumnName="工单" />
+                <ScalarProperty Name="工位类型" ColumnName="工位类型" />
+                <ScalarProperty Name="开始时间" ColumnName="开始时间" />
+                <ScalarProperty Name="结束时间" ColumnName="结束时间" />
+                <ScalarProperty Name="工单套数" ColumnName="工单套数" />
+                <ScalarProperty Name="收料数量" ColumnName="收料数量" />
+                <ScalarProperty Name="完成数量" ColumnName="完成数量" />
+                <ScalarProperty Name="坏品数量" ColumnName="坏品数量" />
+                <ScalarProperty Name="转工序数量" ColumnName="转工序数量" />
+                <ScalarProperty Name="员工" ColumnName="员工" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="www" FunctionName="YLMES_newModel.Store.www" />
         </EntityContainerMapping>
       </Mapping>

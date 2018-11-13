@@ -113,6 +113,15 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddchildThing", partNumberParameter, childPartIDParameter, createdByParameter);
         }
     
+        public virtual int AddLocationType(string createdBy)
+        {
+            var createdByParameter = createdBy != null ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddLocationType", createdByParameter);
+        }
+    
         public virtual int AddMerial(string level, string figureNumber, string partNumber, string partSpec, string partMaterial, string qTY, string note, string listType, Nullable<int> taskID)
         {
             var levelParameter = level != null ?
@@ -199,6 +208,31 @@ namespace YLMES.Models
                 new ObjectParameter("CreatedBy", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddRoute", routeParameter, createdByParameter);
+        }
+    
+        public virtual int AddWH(string tYPE, Nullable<int> wHID, Nullable<int> wHAreaID, Nullable<int> wHStorageLocationID, string createdBy)
+        {
+            var tYPEParameter = tYPE != null ?
+                new ObjectParameter("TYPE", tYPE) :
+                new ObjectParameter("TYPE", typeof(string));
+    
+            var wHIDParameter = wHID.HasValue ?
+                new ObjectParameter("WHID", wHID) :
+                new ObjectParameter("WHID", typeof(int));
+    
+            var wHAreaIDParameter = wHAreaID.HasValue ?
+                new ObjectParameter("WHAreaID", wHAreaID) :
+                new ObjectParameter("WHAreaID", typeof(int));
+    
+            var wHStorageLocationIDParameter = wHStorageLocationID.HasValue ?
+                new ObjectParameter("WHStorageLocationID", wHStorageLocationID) :
+                new ObjectParameter("WHStorageLocationID", typeof(int));
+    
+            var createdByParameter = createdBy != null ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddWH", tYPEParameter, wHIDParameter, wHAreaIDParameter, wHStorageLocationIDParameter, createdByParameter);
         }
     
         public virtual int AddWork(string partNumber, Nullable<int> totalPCS, Nullable<int> qTYofOneSet, Nullable<int> totalQTY, Nullable<int> taskID, string parentPartNumber, string dueDay, string createdEmployee)
@@ -376,6 +410,15 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckRouteName_Result>("CheckRouteName");
         }
     
+        public virtual ObjectResult<CheckStationType_Result> CheckStationType(string stationType)
+        {
+            var stationTypeParameter = stationType != null ?
+                new ObjectParameter("StationType", stationType) :
+                new ObjectParameter("StationType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckStationType_Result>("CheckStationType", stationTypeParameter);
+        }
+    
         public virtual ObjectResult<CheckStorage_Result> CheckStorage(string wHArea, string wH, string wHStorageLocation)
         {
             var wHAreaParameter = wHArea != null ?
@@ -454,6 +497,19 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteBOM", partNumberParameter, iDParameter);
         }
     
+        public virtual ObjectResult<DeleteLocationType_Result> DeleteLocationType(Nullable<int> stationTypeID, string stationType)
+        {
+            var stationTypeIDParameter = stationTypeID.HasValue ?
+                new ObjectParameter("StationTypeID", stationTypeID) :
+                new ObjectParameter("StationTypeID", typeof(int));
+    
+            var stationTypeParameter = stationType != null ?
+                new ObjectParameter("StationType", stationType) :
+                new ObjectParameter("StationType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeleteLocationType_Result>("DeleteLocationType", stationTypeIDParameter, stationTypeParameter);
+        }
+    
         public virtual int DeleteProcess(Nullable<int> iD)
         {
             var iDParameter = iD.HasValue ?
@@ -489,6 +545,27 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteTaskProgress", taskIDParameter, itemParameter);
         }
     
+        public virtual int DeleteWH(string tYPE, Nullable<int> wHAreaID, Nullable<int> wHStorageLocationID, Nullable<int> wHGoodsAllocationID, ObjectParameter mSG)
+        {
+            var tYPEParameter = tYPE != null ?
+                new ObjectParameter("TYPE", tYPE) :
+                new ObjectParameter("TYPE", typeof(string));
+    
+            var wHAreaIDParameter = wHAreaID.HasValue ?
+                new ObjectParameter("WHAreaID", wHAreaID) :
+                new ObjectParameter("WHAreaID", typeof(int));
+    
+            var wHStorageLocationIDParameter = wHStorageLocationID.HasValue ?
+                new ObjectParameter("WHStorageLocationID", wHStorageLocationID) :
+                new ObjectParameter("WHStorageLocationID", typeof(int));
+    
+            var wHGoodsAllocationIDParameter = wHGoodsAllocationID.HasValue ?
+                new ObjectParameter("WHGoodsAllocationID", wHGoodsAllocationID) :
+                new ObjectParameter("WHGoodsAllocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteWH", tYPEParameter, wHAreaIDParameter, wHStorageLocationIDParameter, wHGoodsAllocationIDParameter, mSG);
+        }
+    
         public virtual ObjectResult<EditAccessSetup_Result> EditAccessSetup(string userName)
         {
             var userNameParameter = userName != null ?
@@ -496,6 +573,27 @@ namespace YLMES.Models
                 new ObjectParameter("UserName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EditAccessSetup_Result>("EditAccessSetup", userNameParameter);
+        }
+    
+        public virtual int EditLocationType(Nullable<int> stationTypeID, string stationTypeNumber, string stationType, string createdBy)
+        {
+            var stationTypeIDParameter = stationTypeID.HasValue ?
+                new ObjectParameter("StationTypeID", stationTypeID) :
+                new ObjectParameter("StationTypeID", typeof(int));
+    
+            var stationTypeNumberParameter = stationTypeNumber != null ?
+                new ObjectParameter("StationTypeNumber", stationTypeNumber) :
+                new ObjectParameter("StationTypeNumber", typeof(string));
+    
+            var stationTypeParameter = stationType != null ?
+                new ObjectParameter("StationType", stationType) :
+                new ObjectParameter("StationType", typeof(string));
+    
+            var createdByParameter = createdBy != null ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditLocationType", stationTypeIDParameter, stationTypeNumberParameter, stationTypeParameter, createdByParameter);
         }
     
         public virtual int EditProcessBOM(Nullable<int> iD, string partNumber, string childPartQTY, string childPartNumber)
@@ -517,6 +615,47 @@ namespace YLMES.Models
                 new ObjectParameter("ChildPartNumber", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditProcessBOM", iDParameter, partNumberParameter, childPartQTYParameter, childPartNumberParameter);
+        }
+    
+        public virtual int EditWH(string tYPE, Nullable<int> iD, Nullable<int> wHID, string wH, string wHArea, string createdBy, string desc, string wHStorageLocation, string wHGoodsAllocation)
+        {
+            var tYPEParameter = tYPE != null ?
+                new ObjectParameter("TYPE", tYPE) :
+                new ObjectParameter("TYPE", typeof(string));
+    
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var wHIDParameter = wHID.HasValue ?
+                new ObjectParameter("WHID", wHID) :
+                new ObjectParameter("WHID", typeof(int));
+    
+            var wHParameter = wH != null ?
+                new ObjectParameter("WH", wH) :
+                new ObjectParameter("WH", typeof(string));
+    
+            var wHAreaParameter = wHArea != null ?
+                new ObjectParameter("WHArea", wHArea) :
+                new ObjectParameter("WHArea", typeof(string));
+    
+            var createdByParameter = createdBy != null ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(string));
+    
+            var descParameter = desc != null ?
+                new ObjectParameter("desc", desc) :
+                new ObjectParameter("desc", typeof(string));
+    
+            var wHStorageLocationParameter = wHStorageLocation != null ?
+                new ObjectParameter("WHStorageLocation", wHStorageLocation) :
+                new ObjectParameter("WHStorageLocation", typeof(string));
+    
+            var wHGoodsAllocationParameter = wHGoodsAllocation != null ?
+                new ObjectParameter("WHGoodsAllocation", wHGoodsAllocation) :
+                new ObjectParameter("WHGoodsAllocation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditWH", tYPEParameter, iDParameter, wHIDParameter, wHParameter, wHAreaParameter, createdByParameter, descParameter, wHStorageLocationParameter, wHGoodsAllocationParameter);
         }
     
         public virtual int force_updataBuye(Nullable<int> projectID, Nullable<int> pOID, Nullable<int> materialID, Nullable<int> inPCS, Nullable<int> inQTY, string unites, Nullable<int> i)
@@ -722,7 +861,7 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PM_AssignTasksCheck_Result>("PM_AssignTasksCheck", rwapStatusIDParameter, createdTimeStartParameter, salesOrderParameter, projectNameParameter, statusIDParameter);
         }
     
-        public virtual ObjectResult<PM_EditAccessSetup_Result> PM_EditAccessSetup(string type, string userName, string functionName, Nullable<int> status)
+        public virtual ObjectResult<PM_EditAccessSetup_Result> PM_EditAccessSetup(string type, string userName, string functionName, Nullable<int> status, Nullable<int> typeid)
         {
             var typeParameter = type != null ?
                 new ObjectParameter("type", type) :
@@ -740,7 +879,11 @@ namespace YLMES.Models
                 new ObjectParameter("Status", status) :
                 new ObjectParameter("Status", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PM_EditAccessSetup_Result>("PM_EditAccessSetup", typeParameter, userNameParameter, functionNameParameter, statusParameter);
+            var typeidParameter = typeid.HasValue ?
+                new ObjectParameter("typeid", typeid) :
+                new ObjectParameter("typeid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PM_EditAccessSetup_Result>("PM_EditAccessSetup", typeParameter, userNameParameter, functionNameParameter, statusParameter, typeidParameter);
         }
     
         public virtual ObjectResult<PM_ProjectCheckTask2_Result> PM_ProjectCheckTask2(string projectName)
@@ -3309,6 +3452,15 @@ namespace YLMES.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_PM_WorkOrderMaterialPickList", tYPEParameter, iDParameter, workorderIDParameter, workorderParameter, figureNumberParameter, partNumberParameter, partMaterialParameter, partSpecParameter, requirementQTYParameter, recievedPCSParameter, unitsParameter, employeeParameter, statusParameter);
         }
     
+        public virtual ObjectResult<StationType_Result> StationType(string stationType)
+        {
+            var stationTypeParameter = stationType != null ?
+                new ObjectParameter("StationType", stationType) :
+                new ObjectParameter("StationType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StationType_Result>("StationType", stationTypeParameter);
+        }
+    
         public virtual ObjectResult<TaskCheck_Result> TaskCheck(Nullable<int> taskID)
         {
             var taskIDParameter = taskID.HasValue ?
@@ -3711,6 +3863,53 @@ namespace YLMES.Models
         public virtual int upStork()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("upStork");
+        }
+    
+        public virtual ObjectResult<WOCheck_Result> WOCheck(string customerName, string contractNumber, string workorderNO, string createTime, string createTimeTo)
+        {
+            var customerNameParameter = customerName != null ?
+                new ObjectParameter("CustomerName", customerName) :
+                new ObjectParameter("CustomerName", typeof(string));
+    
+            var contractNumberParameter = contractNumber != null ?
+                new ObjectParameter("ContractNumber", contractNumber) :
+                new ObjectParameter("ContractNumber", typeof(string));
+    
+            var workorderNOParameter = workorderNO != null ?
+                new ObjectParameter("WorkorderNO", workorderNO) :
+                new ObjectParameter("WorkorderNO", typeof(string));
+    
+            var createTimeParameter = createTime != null ?
+                new ObjectParameter("CreateTime", createTime) :
+                new ObjectParameter("CreateTime", typeof(string));
+    
+            var createTimeToParameter = createTimeTo != null ?
+                new ObjectParameter("CreateTimeTo", createTimeTo) :
+                new ObjectParameter("CreateTimeTo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WOCheck_Result>("WOCheck", customerNameParameter, contractNumberParameter, workorderNOParameter, createTimeParameter, createTimeToParameter);
+        }
+    
+        public virtual ObjectResult<WOdetail_Result> WOdetail(string workorderNO)
+        {
+            var workorderNOParameter = workorderNO != null ?
+                new ObjectParameter("WorkorderNO", workorderNO) :
+                new ObjectParameter("WorkorderNO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WOdetail_Result>("WOdetail", workorderNOParameter);
+        }
+    
+        public virtual ObjectResult<WOdetail_byStation_Result> WOdetail_byStation(string stationType, string workorderNO)
+        {
+            var stationTypeParameter = stationType != null ?
+                new ObjectParameter("StationType", stationType) :
+                new ObjectParameter("StationType", typeof(string));
+    
+            var workorderNOParameter = workorderNO != null ?
+                new ObjectParameter("WorkorderNO", workorderNO) :
+                new ObjectParameter("WorkorderNO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WOdetail_byStation_Result>("WOdetail_byStation", stationTypeParameter, workorderNOParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> www(string tYPE, Nullable<int> iD)

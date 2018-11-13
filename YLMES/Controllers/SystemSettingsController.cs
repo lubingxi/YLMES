@@ -581,5 +581,96 @@ namespace YLMES.Controllers
             return result;
         }
         #endregion
+
+        #region 生产工位类型
+        //工位信息页面
+        public ActionResult LocationType()
+        {
+            return View();
+        }
+        //显示工位信息
+        public ActionResult CheckLocationType(string Type,int page,int limit)
+        {
+            using (YLMES_newEntities ys = new YLMES_newEntities())
+            {
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@StationType", Type);
+                var list = ys.Database.SqlQuery<CheckStationType_Result>("exec CheckStationType @StationType", parms).ToList();
+                Dictionary<string, Object> hasmap = new Dictionary<string, Object>();
+                PageList<CheckStationType_Result> pageList = new PageList<CheckStationType_Result>(list, page, limit);
+                int count = list.Count();
+                hasmap.Add("code", 0);
+                hasmap.Add("msg", "");
+                hasmap.Add("count", count);
+                hasmap.Add("data", pageList);
+                return Json(hasmap, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //删除工位类型
+        public ActionResult DeleteLocationType(string id,string type)
+        {
+            try
+            {
+                int i = int.Parse(id);
+                SqlParameter[] parms = new SqlParameter[2];
+                parms[0] = new SqlParameter("@StationTypeID", i);
+                parms[1] = new SqlParameter("@StationType", type);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec DeleteLocationType  @StationTypeID,@StationType", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //修改工位类型
+        public ActionResult EditLocationType(string id, string bianhao, string type)
+        {
+            try
+            {
+                int i = int.Parse(id);
+                string name = Session["name"].ToString();
+                SqlParameter[] parms = new SqlParameter[4];
+                parms[0] = new SqlParameter("@StationTypeID", i);
+                parms[1] = new SqlParameter("@StationTypeNumber", bianhao);
+                parms[2] = new SqlParameter("@StationType", type);
+                parms[3] = new SqlParameter("@CreatedBy", name);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec EditLocationType  @StationTypeID,@StationTypeNumber,@StationType,@CreatedBy", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        //添加工位类型
+        public ActionResult AddLocationType()
+        {
+            try
+            {
+                string name = Session["name"].ToString();
+                SqlParameter[] parms = new SqlParameter[1];
+                parms[0] = new SqlParameter("@CreatedBy", name);
+                using (YLMES_newEntities ys = new YLMES_newEntities())
+                {
+                    ys.Database.ExecuteSqlCommand("exec AddLocationType  @CreatedBy", parms);
+                }
+                return Content("true");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Content("false");
+            }
+        }
+        #endregion
     }
 }
