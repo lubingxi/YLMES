@@ -117,6 +117,10 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Webpages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\System.Web.Webpages.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -138,9 +142,6 @@
     <Reference Include="System.Web.Razor">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Webpages">
-      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Webpages.Deployment">
       <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
     </Reference>
@@ -159,20 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
-    <Content Include="control\css\zyUpload.css" />
-    <Content Include="control\images\add_img.png" />
-    <Content Include="control\images\bg.png" />
-    <Content Include="control\images\delete_blue.png" />
-    <Content Include="control\images\delete_white.png" />
-    <Content Include="control\images\fileType\file.png" />
-    <Content Include="control\images\fileType\rar.png" />
-    <Content Include="control\images\fileType\txt.png" />
-    <Content Include="control\images\fileType\zip.png" />
-    <Content Include="control\images\success.png" />
-    <Content Include="control\js\jquery-1.7.2.js" />
-    <Content Include="control\js\zyUpload.js" />
-    <Content Include="core\lanrenzhijia.js" />
-    <Content Include="core\zyFile.js" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\fresh-bootstrap-table.css" />
     <Content Include="css\styled.css" />
@@ -192,9 +179,26 @@
     <Content Include="images\siri_by_hs1987-dbd58rs.png" />
     <Content Include="images\system-preferences-icon.png" />
     <Content Include="jquery.gvChart-1.0.1.js" />
+    <Content Include="js\cloud.js" />
+    <Content Include="js\format+zh_CN,default,corechart.I.js" />
+    <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\jquery-2.1.1.min.js" />
+    <Content Include="js\jquery.ba-resize.min.js" />
+    <Content Include="js\jquery.gvChart-1.0.1.min.js" />
+    <Content Include="js\jquery.idTabs.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.leanModal.min.js" />
+    <Content Include="js\jsapi.js" />
+    <Content Include="js\PIE.htc" />
+    <Content Include="js\ProductLine.js" />
+    <Content Include="js\ProductStation.js" />
+    <Content Include="js\select-ui.min.js" />
     <Content Include="ReleaseNotes.css" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.woff" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -212,11 +216,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="control\images\fileType\Thumbs.db" />
-    <Content Include="control\images\Thumbs.db" />
-    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.eot" />
-    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.woff" />
     <None Include="Properties\PublishProfiles\YLMESNew.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="css\bootstrap-table.css" />
@@ -242,9 +241,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="CacheHelper.cs" />
+    <Compile Include="Controllers\AfterManagementController.cs" />
     <Compile Include="Controllers\ContractTwoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductionPlanningController.cs" />
+    <Compile Include="Controllers\PurchasingManageController.cs" />
     <Compile Include="Controllers\RmsController.cs" />
     <Compile Include="Controllers\SystemSettingsController.cs" />
     <Compile Include="Controllers\TaskManagementController.cs" />
@@ -286,6 +287,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CheckRouteName_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckSales_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CheckStationType_Result.cs">
@@ -334,6 +338,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getWH_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InstallHistory_check_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Install_check_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IwantMoreTask_Result.cs">
@@ -579,6 +589,9 @@
     <Compile Include="Models\selMateiallist_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SP_CheckWO_Package_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SP_ContractEdit3_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -592,6 +605,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_Contract_checkProductOrder_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_Contract_Package_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_Contract_ProductDetailNotice_Check_Result.cs">
@@ -756,6 +772,14 @@
     <Content Include="Views\ProductionPlanning\RoDetail.cshtml" />
     <Content Include="Views\ProductionPlanning\ByStation.cshtml" />
     <Content Include="Views\TechnicalDepartment\UploadTheDrawings.cshtml" />
+    <Content Include="Views\AfterManagement\Installation.cshtml" />
+    <Content Include="Views\AfterManagement\Contract_Check.cshtml" />
+    <Content Include="Views\AfterManagement\ContractInstallation.cshtml" />
+    <Content Include="Views\AfterManagement\InstallHistory.cshtml" />
+    <Content Include="Views\PurchasingManage\SupplierInformation.cshtml" />
+    <Content Include="Views\SystemSettings\i.cshtml" />
+    <Content Include="Views\SystemSettings\ProductLine.cshtml" />
+    <Content Include="Views\SystemSettings\ProductStation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -769,7 +793,6 @@
     <Folder Include="BOM\" />
     <Folder Include="editor\" />
     <Folder Include="font\" />
-    <Folder Include="js\" />
     <Folder Include="layui\" />
     <Folder Include="lib\" />
     <Folder Include="My97DatePicker4.7.2\" />

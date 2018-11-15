@@ -129,11 +129,13 @@ namespace YlMES.Controllers
             }
             using (YLMES_newEntities yd = new YLMES_newEntities())
             {
-                SqlParameter[] parms = new SqlParameter[3];
+                string name = Session["name"].ToString();
+                SqlParameter[] parms = new SqlParameter[4];
                 parms[0] = new SqlParameter("@MaterialID",wuliaoId);
                 parms[1] = new SqlParameter("@InQTY", sl);
                 parms[2] = new SqlParameter("@Location", hww);
-                yd.Database.ExecuteSqlCommandAsync("exec AddPM_MaterialList @MaterialID,@InQTY,@Location", parms);
+                parms[3] = new SqlParameter("@createdBy", name);
+                yd.Database.ExecuteSqlCommand("exec AddPM_MaterialList @MaterialID,@InQTY,@Location,@createdBy", parms);
             }
             return View();
         }

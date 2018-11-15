@@ -1322,6 +1322,14 @@
           <Parameter Name="PartNumber" Type="varchar" Mode="In" />
         </Function>
         <Function Name="CheckRouteName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CheckSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="varchar" Mode="In" />
+          <Parameter Name="CustomerName" Type="varchar" Mode="In" />
+          <Parameter Name="ContractNumber" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedTimeStart" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedTimeEnd" Type="varchar" Mode="In" />
+          <Parameter Name="StatusID" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="CheckStationType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StationType" Type="varchar" Mode="In" />
         </Function>
@@ -1421,6 +1429,22 @@
         </Function>
         <Function Name="ImcommingPONotice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PONO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Install_check" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContractID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Install_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContractID" Type="int" Mode="In" />
+          <Parameter Name="ProductDetailID" Type="int" Mode="In" />
+          <Parameter Name="newInstalledQuantity" Type="varchar" Mode="In" />
+          <Parameter Name="CompletionDate" Type="varchar" Mode="In" />
+          <Parameter Name="AcceptanceDate" Type="varchar" Mode="In" />
+          <Parameter Name="Acceptance" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="InstallHistory_check" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContractID" Type="int" Mode="In" />
+          <Parameter Name="ProductDetailID" Type="int" Mode="In" />
         </Function>
         <Function Name="IwantMoreTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MyCompletedTaskCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1688,6 +1712,17 @@
           <Parameter Name="POID" Type="int" Mode="In" />
           <Parameter Name="MaterialID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_ADD_Package" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TYPE" Type="varchar" Mode="In" />
+          <Parameter Name="WorkorderNO" Type="varchar" Mode="In" />
+          <Parameter Name="TotalPCS" Type="int" Mode="In" />
+          <Parameter Name="CreatedEmployee" Type="varchar" Mode="In" />
+          <Parameter Name="PackageLabelQTY" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CheckWO_Package" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Type" Type="varchar" Mode="In" />
+          <Parameter Name="WorkorderNO" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SP_Contract_checkProductOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CreatedTimeStart" Type="varchar" Mode="In" />
           <Parameter Name="CreatedTimeEnd" Type="varchar" Mode="In" />
@@ -1695,6 +1730,10 @@
           <Parameter Name="ProductOrderStatus" Type="varchar" Mode="In" />
           <Parameter Name="CustomerName" Type="varchar" Mode="In" />
           <Parameter Name="ContractNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Contract_Package" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TYPE" Type="varchar" Mode="In" />
+          <Parameter Name="WorkorderNO" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_Contract_ProductDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="type" Type="varchar" Mode="In" />
@@ -2147,6 +2186,12 @@
           <Parameter Name="Employee" Type="varchar" Mode="In" />
           <Parameter Name="Status" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_WeorNOlsit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TYPE" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_WorkorderNOlsit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TYPE" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="StationType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StationType" Type="varchar" Mode="In" />
         </Function>
@@ -2263,6 +2308,12 @@
           <Parameter Name="to" Type="varchar" Mode="In" />
           <Parameter Name="Content" Type="varchar" Mode="In" />
           <Parameter Name="CompletionDescription" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UploadTheDrawings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FigureNumber" Type="varchar" Mode="In" />
+          <Parameter Name="FolderName" Type="varchar" Mode="In" />
+          <Parameter Name="FileName" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
         </Function>
         <Function Name="upStork" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="WOCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -4086,6 +4137,14 @@
             <Parameter Name="PartNumber" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CheckRouteName" ReturnType="Collection(YLMES_newModel.CheckRouteName_Result)" />
+          <FunctionImport Name="CheckSales" ReturnType="Collection(YLMES_newModel.CheckSales_Result)">
+            <Parameter Name="ID" Mode="In" Type="String" />
+            <Parameter Name="CustomerName" Mode="In" Type="String" />
+            <Parameter Name="ContractNumber" Mode="In" Type="String" />
+            <Parameter Name="CreatedTimeStart" Mode="In" Type="String" />
+            <Parameter Name="CreatedTimeEnd" Mode="In" Type="String" />
+            <Parameter Name="StatusID" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="CheckStationType" ReturnType="Collection(YLMES_newModel.CheckStationType_Result)">
             <Parameter Name="StationType" Mode="In" Type="String" />
           </FunctionImport>
@@ -4185,6 +4244,22 @@
           </FunctionImport>
           <FunctionImport Name="ImcommingPONotice">
             <Parameter Name="PONO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Install_check" ReturnType="Collection(YLMES_newModel.Install_check_Result)">
+            <Parameter Name="ContractID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Install_update">
+            <Parameter Name="ContractID" Mode="In" Type="Int32" />
+            <Parameter Name="ProductDetailID" Mode="In" Type="Int32" />
+            <Parameter Name="newInstalledQuantity" Mode="In" Type="String" />
+            <Parameter Name="CompletionDate" Mode="In" Type="String" />
+            <Parameter Name="AcceptanceDate" Mode="In" Type="String" />
+            <Parameter Name="Acceptance" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InstallHistory_check" ReturnType="Collection(YLMES_newModel.InstallHistory_check_Result)">
+            <Parameter Name="ContractID" Mode="In" Type="Int32" />
+            <Parameter Name="ProductDetailID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="IwantMoreTask" ReturnType="Collection(YLMES_newModel.IwantMoreTask_Result)" />
           <FunctionImport Name="MyCompletedTaskCheck" ReturnType="Collection(YLMES_newModel.MyCompletedTaskCheck_Result)">
@@ -4452,6 +4527,17 @@
             <Parameter Name="POID" Mode="In" Type="Int32" />
             <Parameter Name="MaterialID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_ADD_Package" ReturnType="Collection(String)">
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+            <Parameter Name="WorkorderNO" Mode="In" Type="String" />
+            <Parameter Name="TotalPCS" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedEmployee" Mode="In" Type="String" />
+            <Parameter Name="PackageLabelQTY" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CheckWO_Package" ReturnType="Collection(YLMES_newModel.SP_CheckWO_Package_Result)">
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="WorkorderNO" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="SP_Contract_checkProductOrder" ReturnType="Collection(YLMES_newModel.SP_Contract_checkProductOrder_Result)">
             <Parameter Name="CreatedTimeStart" Mode="In" Type="String" />
             <Parameter Name="CreatedTimeEnd" Mode="In" Type="String" />
@@ -4459,6 +4545,10 @@
             <Parameter Name="ProductOrderStatus" Mode="In" Type="String" />
             <Parameter Name="CustomerName" Mode="In" Type="String" />
             <Parameter Name="ContractNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Contract_Package" ReturnType="Collection(YLMES_newModel.SP_Contract_Package_Result)">
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+            <Parameter Name="WorkorderNO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Contract_ProductDetail" ReturnType="Collection(String)">
             <Parameter Name="type" Mode="In" Type="String" />
@@ -4911,6 +5001,12 @@
             <Parameter Name="Employee" Mode="In" Type="String" />
             <Parameter Name="Status" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_WeorNOlsit" ReturnType="Collection(String)">
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_WorkorderNOlsit" ReturnType="Collection(String)">
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="StationType" ReturnType="Collection(YLMES_newModel.StationType_Result)">
             <Parameter Name="StationType" Mode="In" Type="String" />
           </FunctionImport>
@@ -5028,6 +5124,12 @@
             <Parameter Name="Content" Mode="In" Type="String" />
             <Parameter Name="CompletionDescription" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UploadTheDrawings">
+            <Parameter Name="FigureNumber" Mode="In" Type="String" />
+            <Parameter Name="FolderName" Mode="In" Type="String" />
+            <Parameter Name="FileName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="upStork" />
           <FunctionImport Name="WOCheck" ReturnType="Collection(YLMES_newModel.WOCheck_Result)">
             <Parameter Name="CustomerName" Mode="In" Type="String" />
@@ -5100,6 +5202,23 @@
         <ComplexType Name="CheckRouteName_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="RouteName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="CheckSales_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ContractNumber" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="合同签订日期" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="合同金额" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="收款金额" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="创建时间" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="收款方式" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="是否安装" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="是否运输" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="是否含税" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="交期" Nullable="true" />
+          <Property Type="String" Name="违约条件" Nullable="true" />
+          <Property Type="String" Name="合同总结" Nullable="true" />
+          <Property Type="String" Name="合同状态" Nullable="false" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="CheckStationType_Result">
           <Property Type="Int32" Name="序号" Nullable="false" />
@@ -5176,6 +5295,36 @@
           <Property Type="String" Name="PartNumber" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="PartSpec" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Install_check_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="Int32" Name="合同编号" Nullable="false" />
+          <Property Type="String" Name="产品名称" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="客户产品名称" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="产品规格" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="单位" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="合同数量" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="发货数量" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="已安装数量" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="今安装数量" Nullable="false" />
+          <Property Type="String" Name="完成时间" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="是否验收" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="验收时间" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="InstallHistory_check_Result">
+          <Property Type="Int32" Name="序号" Nullable="false" />
+          <Property Type="Int32" Name="合同编号" Nullable="false" />
+          <Property Type="String" Name="产品名称" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="客户产品名称" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="产品规格" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="单位" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="合同数量" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="已发数量" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="今安装数量" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="完成时间" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="是否验收" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="验收时间" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="创建时间" Nullable="false" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="IwantMoreTask_Result">
           <Property Type="String" Name="项目名称" Nullable="false" MaxLength="200" />
@@ -5500,6 +5649,11 @@
           <Property Type="String" Name="PartNumber" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="PartSpec" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="SP_CheckWO_Package_Result">
+          <Property Type="String" Name="项目名称" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="产品名称" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="工单总数量" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="SP_Contract_checkProductOrder_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="200" />
@@ -5515,6 +5669,12 @@
           <Property Type="String" Name="违约条件" Nullable="true" />
           <Property Type="String" Name="合同总结" Nullable="true" />
           <Property Type="String" Name="合同状态" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="SP_Contract_Package_Result">
+          <Property Type="String" Name="包装名称" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="包装数量" Nullable="true" />
+          <Property Type="String" Name="包装时间" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="包装人" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="SP_Contract_ProductDetail_Check_Result">
           <Property Type="Int32" Name="产品序号" Nullable="false" />
@@ -7194,6 +7354,27 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CheckSales" FunctionName="YLMES_newModel.Store.CheckSales">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.CheckSales_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="合同签订日期" ColumnName="合同签订日期" />
+                <ScalarProperty Name="合同金额" ColumnName="合同金额" />
+                <ScalarProperty Name="收款金额" ColumnName="收款金额" />
+                <ScalarProperty Name="创建时间" ColumnName="创建时间" />
+                <ScalarProperty Name="收款方式" ColumnName="收款方式" />
+                <ScalarProperty Name="是否安装" ColumnName="是否安装" />
+                <ScalarProperty Name="是否运输" ColumnName="是否运输" />
+                <ScalarProperty Name="是否含税" ColumnName="是否含税" />
+                <ScalarProperty Name="交期" ColumnName="交期" />
+                <ScalarProperty Name="违约条件" ColumnName="违约条件" />
+                <ScalarProperty Name="合同总结" ColumnName="合同总结" />
+                <ScalarProperty Name="合同状态" ColumnName="合同状态" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CheckStationType" FunctionName="YLMES_newModel.Store.CheckStationType">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.CheckStationType_Result">
@@ -7318,6 +7499,45 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ImcommingPONotice" FunctionName="YLMES_newModel.Store.ImcommingPONotice" />
+          <FunctionImportMapping FunctionImportName="Install_check" FunctionName="YLMES_newModel.Store.Install_check">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.Install_check_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="合同编号" ColumnName="合同编号" />
+                <ScalarProperty Name="产品名称" ColumnName="产品名称" />
+                <ScalarProperty Name="客户产品名称" ColumnName="客户产品名称" />
+                <ScalarProperty Name="产品规格" ColumnName="产品规格" />
+                <ScalarProperty Name="单位" ColumnName="单位" />
+                <ScalarProperty Name="合同数量" ColumnName="合同数量" />
+                <ScalarProperty Name="发货数量" ColumnName="发货数量" />
+                <ScalarProperty Name="已安装数量" ColumnName="已安装数量" />
+                <ScalarProperty Name="今安装数量" ColumnName="今安装数量" />
+                <ScalarProperty Name="完成时间" ColumnName="完成时间" />
+                <ScalarProperty Name="是否验收" ColumnName="是否验收" />
+                <ScalarProperty Name="验收时间" ColumnName="验收时间" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Install_update" FunctionName="YLMES_newModel.Store.Install_update" />
+          <FunctionImportMapping FunctionImportName="InstallHistory_check" FunctionName="YLMES_newModel.Store.InstallHistory_check">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.InstallHistory_check_Result">
+                <ScalarProperty Name="序号" ColumnName="序号" />
+                <ScalarProperty Name="合同编号" ColumnName="合同编号" />
+                <ScalarProperty Name="产品名称" ColumnName="产品名称" />
+                <ScalarProperty Name="客户产品名称" ColumnName="客户产品名称" />
+                <ScalarProperty Name="产品规格" ColumnName="产品规格" />
+                <ScalarProperty Name="单位" ColumnName="单位" />
+                <ScalarProperty Name="合同数量" ColumnName="合同数量" />
+                <ScalarProperty Name="已发数量" ColumnName="已发数量" />
+                <ScalarProperty Name="今安装数量" ColumnName="今安装数量" />
+                <ScalarProperty Name="完成时间" ColumnName="完成时间" />
+                <ScalarProperty Name="是否验收" ColumnName="是否验收" />
+                <ScalarProperty Name="验收时间" ColumnName="验收时间" />
+                <ScalarProperty Name="创建时间" ColumnName="创建时间" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="IwantMoreTask" FunctionName="YLMES_newModel.Store.IwantMoreTask">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.IwantMoreTask_Result">
@@ -7737,6 +7957,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ADD_Package" FunctionName="YLMES_newModel.Store.SP_ADD_Package" />
+          <FunctionImportMapping FunctionImportName="SP_CheckWO_Package" FunctionName="YLMES_newModel.Store.SP_CheckWO_Package">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.SP_CheckWO_Package_Result">
+                <ScalarProperty Name="项目名称" ColumnName="项目名称" />
+                <ScalarProperty Name="产品名称" ColumnName="产品名称" />
+                <ScalarProperty Name="工单总数量" ColumnName="工单总数量" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_Contract_checkProductOrder" FunctionName="YLMES_newModel.Store.SP_Contract_checkProductOrder">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.SP_Contract_checkProductOrder_Result">
@@ -7754,6 +7984,16 @@
                 <ScalarProperty Name="违约条件" ColumnName="违约条件" />
                 <ScalarProperty Name="合同总结" ColumnName="合同总结" />
                 <ScalarProperty Name="合同状态" ColumnName="合同状态" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Contract_Package" FunctionName="YLMES_newModel.Store.SP_Contract_Package">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="YLMES_newModel.SP_Contract_Package_Result">
+                <ScalarProperty Name="包装名称" ColumnName="包装名称" />
+                <ScalarProperty Name="包装数量" ColumnName="包装数量" />
+                <ScalarProperty Name="包装时间" ColumnName="包装时间" />
+                <ScalarProperty Name="包装人" ColumnName="包装人" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8072,6 +8312,8 @@
           <FunctionImportMapping FunctionImportName="SP_PM_Workorder" FunctionName="YLMES_newModel.Store.SP_PM_Workorder" />
           <FunctionImportMapping FunctionImportName="SP_PM_WorkOrderHistory" FunctionName="YLMES_newModel.Store.SP_PM_WorkOrderHistory" />
           <FunctionImportMapping FunctionImportName="SP_PM_WorkOrderMaterialPickList" FunctionName="YLMES_newModel.Store.SP_PM_WorkOrderMaterialPickList" />
+          <FunctionImportMapping FunctionImportName="SP_WeorNOlsit" FunctionName="YLMES_newModel.Store.SP_WeorNOlsit" />
+          <FunctionImportMapping FunctionImportName="SP_WorkorderNOlsit" FunctionName="YLMES_newModel.Store.SP_WorkorderNOlsit" />
           <FunctionImportMapping FunctionImportName="StationType" FunctionName="YLMES_newModel.Store.StationType">
             <ResultMapping>
               <ComplexTypeMapping TypeName="YLMES_newModel.StationType_Result">
@@ -8222,6 +8464,7 @@
           <FunctionImportMapping FunctionImportName="UpdateTaskForChangeIssueOwner" FunctionName="YLMES_newModel.Store.UpdateTaskForChangeIssueOwner" />
           <FunctionImportMapping FunctionImportName="UpdateTaskForChangeOwner" FunctionName="YLMES_newModel.Store.UpdateTaskForChangeOwner" />
           <FunctionImportMapping FunctionImportName="UpdateTaskProgress" FunctionName="YLMES_newModel.Store.UpdateTaskProgress" />
+          <FunctionImportMapping FunctionImportName="UploadTheDrawings" FunctionName="YLMES_newModel.Store.UploadTheDrawings" />
           <FunctionImportMapping FunctionImportName="upStork" FunctionName="YLMES_newModel.Store.upStork" />
           <FunctionImportMapping FunctionImportName="WOCheck" FunctionName="YLMES_newModel.Store.WOCheck">
             <ResultMapping>

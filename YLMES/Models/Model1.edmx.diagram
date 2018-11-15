@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e7d0aa13a4364ee48f38298e1a380628" Name="Diagram1">
+      <Diagram DiagramId="263e77d8d6ec4605ad359d7f9323ab9f" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="YLMES_newModel.C_Contract" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YLMES_newModel.C_Contract_Receivables" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YLMES_newModel.C_Contract_ReceivablesHistory" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

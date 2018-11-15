@@ -10,24 +10,20 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>友力信息管理系统</title>
-    <!-- 引用控制层插件样式 -->
-    <link rel="stylesheet" href="~/control/css/zyUpload.css" type="text/css">
-    <script type="text/javascript" src="~/lib/jquery/1.9.1/jquery.min.js"></script>
-    <!-- 引用核心层插件 -->
-    <script src="~/core/zyFile.js"></script>
-    <!-- 引用控制层插件 -->
-    <script src="~/control/js/zyUpload.js"></script>
-    <!-- 引用初始化JS -->
-    <script src="~/core/lanrenzhijia.js"></script>
-
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
-    <style>
-        #oText {
-            border: 1px dotted #ff0000;
-            ryo: expression(onfocus=function light (){with(document.all.oText){style.borderColor=(style.borderColor=="#ffee00"?"#ff0000":"#ffee00");timer=setTimeout(light,500);}},onblur=function(){this.style.borderColor="#ff0000";clearTimeout(timer)});
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../js/jquery.js"></script>
+    <script src="~/layui/layui.js" type="text/javascript"></script>
+    <style type="text/css">
+        tr td{
+            border:5px solid rgb(137,207,240);
+            font-size:26px
         }
-
-        
+        #tab{
+   position:absolute;  
+   left:40%;  
+   top:20%;  
+        }
     </style>
 </head>
 
@@ -42,7 +38,30 @@
             <li><a href="#">上传图纸</a></li>
         </ul>
     </div>
-    <div id="demo" class="demo"></div>
+    @using (Html.BeginForm("UploadDrawings", "TechnicalDepartment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+       <table style="text-align:center;width:800px;height:600px;" id="tab">
+           <tr>
+               <td>
+                   图号
+               </td>
+               <td colspan="2" style="text-align:left;width:150px;height:80px">
+                   <input type="text" name="hao" id="hao" style="width:750px;height:80px" />
+               </td>
+           </tr>
+           <tr>
+               <td colspan="3">
+                   上传图纸路径:<input type="file" name="files" id="files" style="width:300px;height:32px" />
+               </td>
+           </tr>
+           <tr>
+               <td colspan="3">
+                   <button type="submit" style="">上传图纸</button>
+               </td>
+           </tr>
+       </table>                    
+         
+    } 
 
 
     <script type="text/javascript">
